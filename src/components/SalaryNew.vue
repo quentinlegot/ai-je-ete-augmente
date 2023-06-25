@@ -1,18 +1,25 @@
 <script lang="ts">
+import {defineComponent} from "vue";
+
 const defaultDate = '2023-06-25'
 const defaultIncome = 0
 
-export default {
+export default defineComponent({
   emits: ['addSalary'],
+  props: {
+    newKey: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       newDate: defaultDate as string,
       newIncome: defaultIncome as number,
-      newKey: 0
     }
   },
   methods: {
-    addSalary() {
+    addSalary(): void {
       this.$emit('addSalary', {
         date: this.newDate,
         income: this.newIncome,
@@ -20,10 +27,9 @@ export default {
       })
       this.newDate = defaultDate
       this.newIncome = defaultIncome
-      this.newKey++
     }
   }
-}
+})
 </script>
 
 <template>

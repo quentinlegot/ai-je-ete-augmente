@@ -12,7 +12,7 @@ export default defineComponent({
   },
   emits: ['removeSalary'],
   methods: {
-    removeSalary(salary: Salary) {
+    removeSalary(salary: Salary): void {
       this.$emit('removeSalary', salary.key)
     }
   }
