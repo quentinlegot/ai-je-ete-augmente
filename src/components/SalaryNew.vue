@@ -33,9 +33,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <form v-on:submit.prevent="addSalary()">
-    <input type="date" v-model="newDate" />
-    <input type="number" min="0" v-model="newIncome" />
-    <button type="submit">Ajouter le changement de salaire</button>
+  <h2 class="text-slate-800 mt-5">
+    Ajouter un salaire
+  </h2>
+  <form v-on:submit.prevent="addSalary()" class="text-xs">
+    <label for="newDate" class="block mt-3">
+      Date du changement de salaire
+    </label>
+    <input type="date" v-model="newDate" id="newDate" class="block w-full" />
+    <label for="newDate" class="block mt-3">
+      Montant du nouveau salaire
+    </label>
+    <input type="number" min="0" v-model="newIncome" id="newIncome" class="block w-full" />
+    <button type="submit" class="mt-3 p-2 border rounded border-green-800 hover:bg-green-800 hover:text-white">
+      Ajouter
+    </button>
   </form>
 </template>
