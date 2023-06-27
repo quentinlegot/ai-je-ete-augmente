@@ -46,15 +46,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <main>
-    Liste des changements de salaires ({{ nextKey }})
-    <ul>
-      <li v-for="(salary, index) in salaries" v-bind:key="index">
-        <salary-display v-bind:salary="salary" v-on:removeSalary="removeSalary" />
-      </li>
-      <li>
-        <salary-new v-on:addSalary="addSalary" v-bind:new-key="nextKey"/>
-      </li>
-    </ul>
+  <main class="md:flex md:flex-row">
+    <section class="md:basis-80 p-5">
+      <div class="contents" :class="salaries.length == 0 ? 'invisible' : ''">
+        <h2 class="text-slate-800 mb-5">
+          Historique des salaires ({{ salaries.length }})
+        </h2>
+        <ol class="border-l-2 border-red-500">
+          <salary-display v-for="(salary, index) in salaries" v-bind:key="index" v-bind:salary="salary" v-on:removeSalary="removeSalary" />
+        </ol>
+      </div>
+      <salary-new v-on:addSalary="addSalary" v-bind:new-key="nextKey"/>
+    </section>
+    <section class="grow">
+    </section>
   </main>
 </template>
