@@ -1,9 +1,6 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 
-const defaultDate = '2023-06-25'
-const defaultIncome = 0
-
 export default defineComponent({
   emits: ['addSalary'],
   props: {
@@ -14,19 +11,22 @@ export default defineComponent({
   },
   data() {
     return {
-      newDate: defaultDate as string,
-      newIncome: defaultIncome as number,
+      newDate: null as string|null,
+      newIncome: null as number|null,
     }
   },
   methods: {
     addSalary(): void {
+      if (this.newDate == null || this.newIncome == null) {
+        return;
+      }
       this.$emit('addSalary', {
         date: this.newDate,
         income: this.newIncome,
         key: this.newKey
       })
-      this.newDate = defaultDate
-      this.newIncome = defaultIncome
+      this.newDate = null
+      this.newIncome = null
     }
   }
 })
@@ -40,11 +40,11 @@ export default defineComponent({
     <label for="newDate" class="block mt-3">
       Date du changement de salaire
     </label>
-    <input type="date" v-model="newDate" id="newDate" class="block w-full" />
+    <input type="month" min="2011-01" required v-model="newDate" id="newDate" class="block w-full" />
     <label for="newDate" class="block mt-3">
-      Montant du nouveau salaire
+      Montant du nouveau salaire mensuel net
     </label>
-    <input type="number" min="0" v-model="newIncome" id="newIncome" class="block w-full" />
+    <input type="number" min="0" required placeholder="mensuel net en €" v-model="newIncome" id="newIncome" class="block w-full" />
     <button type="submit" class="mt-3 p-2 border rounded border-green-800 hover:bg-green-800 hover:text-white">
       Ajouter
     </button>
