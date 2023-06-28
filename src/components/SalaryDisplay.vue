@@ -34,31 +34,31 @@ export default defineComponent({
 </script>
 
 <template>
-  <li class="flex flex-start group/salary">
+  <li class="flex-start group/salary flex">
     <div
-      class="shrink-0 -ml-[16px] h-[30px] w-[30px] text-center align-middle rounded-full border-2 border-red-500 bg-white group-hover/salary:bg-red-500"
+      class="-ml-[16px] h-[30px] w-[30px] shrink-0 rounded-full border-2 border-red-500 bg-white text-center align-middle group-hover/salary:bg-red-500"
     >
       <span v-if="salary.state === 'up'"> 📈 </span>
       <span v-else-if="salary.state === 'down'"> 📉 </span>
       <span v-else> 📅 </span>
     </div>
-    <div class="grow block max-w-md p-2 mb-5">
+    <div class="mb-5 block max-w-md grow p-2">
       <p class="text-sm text-neutral-500">
         {{ salary.date }}
       </p>
-      <h3 class="text-xl font-semibold m-1">{{ salary.income }}€</h3>
+      <h3 class="m-1 text-xl font-semibold">{{ salary.income }}€</h3>
       <p v-if="salary.salaryChange !== 0" class="text-sm text-neutral-500">
         augmentation annoncé :
         <span class="text-red-500">{{ salaryChange }}</span>
       </p>
       <p v-if="salary.salaryChange !== 0" class="text-sm text-neutral-500">
         changement réel :
-        <span class="text-red-500 font-bold">{{ salaryChangeAdjusted }}</span>
+        <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
       </p>
       <p v-else class="text-sm text-neutral-500">Salaire de référence</p>
       <button
         v-on:click="removeSalary(salary)"
-        class="p-1 text-sm border rounded border-yellow-300 hover:bg-yellow-300 hover:text-white invisible group-hover/salary:visible"
+        class="invisible rounded border border-yellow-300 p-1 text-sm hover:bg-yellow-300 hover:text-white group-hover/salary:visible"
       >
         Supprimer
       </button>

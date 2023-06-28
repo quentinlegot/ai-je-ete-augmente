@@ -33,9 +33,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <h2 class="text-slate-800 mt-5">Ajouter un salaire</h2>
+  <h2 class="mt-5 text-slate-800">Ajouter un salaire</h2>
   <form v-on:submit.prevent="addSalary()" class="text-xs">
-    <label for="newDate" class="block mt-3"> Date du changement de salaire </label>
+    <label for="newDate" class="mt-3 block"> Date du changement de salaire </label>
     <input
       type="month"
       min="2011-01"
@@ -44,7 +44,7 @@ export default defineComponent({
       id="newDate"
       class="block w-full"
     />
-    <label for="newDate" class="block mt-3"> Montant du nouveau salaire mensuel net </label>
+    <label for="newDate" class="mt-3 block"> Montant du nouveau salaire mensuel net </label>
     <input
       type="number"
       min="0"
@@ -56,7 +56,7 @@ export default defineComponent({
     />
     <button
       type="submit"
-      class="mt-3 p-2 border rounded border-green-800 hover:bg-green-800 hover:text-white"
+      class="mt-3 rounded border border-green-800 p-2 hover:bg-green-800 hover:text-white"
     >
       Ajouter
     </button>

@@ -102,9 +102,9 @@ export default defineComponent({
 
 <template>
   <main class="md:flex md:flex-row">
-    <section class="md:basis-80 p-5">
+    <section class="p-5 md:basis-80">
       <div class="contents" :class="salaries.length == 0 ? 'invisible' : ''">
-        <h2 class="text-slate-800 mb-5">Historique des salaires ({{ salaries.length }})</h2>
+        <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
         <ol class="border-l-2 border-red-500">
           <salary-display
             v-for="(adjustedSalary, index) in adjustedSalaries.filter((adjustedSalary: AdjustedSalary) => adjustedSalary.key !== 0)"
