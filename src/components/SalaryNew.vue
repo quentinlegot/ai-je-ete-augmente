@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import type { Configuration } from '@/components/SharedConfiguration'
+import { SharedConfiguration } from '@/components/SharedConfiguration'
 
 export default defineComponent({
   emits: ['addSalary'],
@@ -11,8 +13,21 @@ export default defineComponent({
   },
   data() {
     return {
+      configuration: SharedConfiguration as Configuration,
       newDate: null as string | null,
       newIncome: null as number | null
+    }
+  },
+  computed: {
+    placeholderSalary(): string {
+      switch (this.configuration.incomeMode) {
+        case 'gross-annual':
+          return 'annuel brut en ' + this.configuration.currency
+        case 'net-monthly':
+          return 'mensuel net en ' + this.configuration.currency
+        default:
+          return ''
+      }
     }
   },
   methods: {
@@ -44,12 +59,12 @@ export default defineComponent({
       id="newDate"
       class="block w-full"
     />
-    <label for="newDate" class="mt-3 block"> Montant du nouveau salaire mensuel net </label>
+    <label for="newDate" class="mt-3 block"> Montant du nouveau salaire </label>
     <input
       type="number"
       min="0"
       required
-      placeholder="mensuel net en €"
+      :placeholder="placeholderSalary"
       v-model="newIncome"
       id="newIncome"
       class="block w-full"

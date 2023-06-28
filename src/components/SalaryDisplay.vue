@@ -2,6 +2,8 @@
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import type { AdjustedSalary } from '@/components/AdjustedSalary'
+import type { Configuration } from '@/components/SharedConfiguration'
+import { SharedConfiguration } from '@/components/SharedConfiguration'
 
 export default defineComponent({
   props: {
@@ -11,6 +13,11 @@ export default defineComponent({
     }
   },
   emits: ['removeSalary'],
+  data() {
+    return {
+      configuration: SharedConfiguration as Configuration
+    }
+  },
   computed: {
     salaryChange(): string {
       return (
@@ -23,18 +30,30 @@ export default defineComponent({
         this.salary.salaryChangeAdjusted.toPrecision(3) +
         '%'
       )
+    },
+    salaryRecurrence(): string {
+      switch (this.configuration.incomeMode) {
+        case 'gross-annual':
+          return 'brut/an'
+        case 'net-monthly':
+          return 'net/mois'
+        default:
+          return ''
+      }
     }
   },
   methods: {
     removeSalary(salary: AdjustedSalary): void {
-      this.$emit('removeSalary', salary.key)
+      if (salary.originalSalary !== null) {
+        this.$emit('removeSalary', salary.originalSalary.key)
+      }
     }
   }
 })
 </script>
 
 <template>
-  <li class="flex-start group/salary flex">
+  <li class="flex-start group/salary flex" v-if="salary.originalSalary !== null">
     <div
       class="-ml-[16px] h-[30px] w-[30px] shrink-0 rounded-full border-2 border-red-500 bg-white text-center align-middle group-hover/salary:bg-red-500"
     >
@@ -44,9 +63,12 @@ export default defineComponent({
     </div>
     <div class="mb-5 block max-w-md grow p-2">
       <p class="text-sm text-neutral-500">
-        {{ salary.date }}
+        {{ salary.originalSalary.date }}
       </p>
-      <h3 class="m-1 text-xl font-semibold">{{ salary.income }}€</h3>
+      <h3 class="m-1 text-xl font-semibold">
+        {{ salary.originalSalary.income }}{{ configuration.currency }}
+        <small class="text-sm text-neutral-800"> {{ salaryRecurrence }} </small>
+      </h3>
       <p v-if="salary.salaryChange !== 0" class="text-sm text-neutral-500">
         augmentation annoncé :
         <span class="text-red-500">{{ salaryChange }}</span>
