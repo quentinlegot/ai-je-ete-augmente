@@ -1,5 +1,5 @@
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   emits: ['addSalary'],
@@ -11,14 +11,14 @@ export default defineComponent({
   },
   data() {
     return {
-      newDate: null as string|null,
-      newIncome: null as number|null,
+      newDate: null as string | null,
+      newIncome: null as number | null
     }
   },
   methods: {
     addSalary(): void {
-      if (this.newDate == null || this.newIncome == null) {
-        return;
+      if (this.newDate === null || this.newIncome == null) {
+        return
       }
       this.$emit('addSalary', {
         date: this.newDate,
@@ -33,19 +33,31 @@ export default defineComponent({
 </script>
 
 <template>
-  <h2 class="text-slate-800 mt-5">
-    Ajouter un salaire
-  </h2>
+  <h2 class="text-slate-800 mt-5">Ajouter un salaire</h2>
   <form v-on:submit.prevent="addSalary()" class="text-xs">
-    <label for="newDate" class="block mt-3">
-      Date du changement de salaire
-    </label>
-    <input type="month" min="2011-01" required v-model="newDate" id="newDate" class="block w-full" />
-    <label for="newDate" class="block mt-3">
-      Montant du nouveau salaire mensuel net
-    </label>
-    <input type="number" min="0" required placeholder="mensuel net en €" v-model="newIncome" id="newIncome" class="block w-full" />
-    <button type="submit" class="mt-3 p-2 border rounded border-green-800 hover:bg-green-800 hover:text-white">
+    <label for="newDate" class="block mt-3"> Date du changement de salaire </label>
+    <input
+      type="month"
+      min="2011-01"
+      required
+      v-model="newDate"
+      id="newDate"
+      class="block w-full"
+    />
+    <label for="newDate" class="block mt-3"> Montant du nouveau salaire mensuel net </label>
+    <input
+      type="number"
+      min="0"
+      required
+      placeholder="mensuel net en €"
+      v-model="newIncome"
+      id="newIncome"
+      class="block w-full"
+    />
+    <button
+      type="submit"
+      class="mt-3 p-2 border rounded border-green-800 hover:bg-green-800 hover:text-white"
+    >
       Ajouter
     </button>
   </form>
