@@ -40,6 +40,16 @@ export default defineComponent({
         default:
           return ''
       }
+    },
+    effectiveSalaryRecurrence(): string {
+      switch (this.configuration.incomeMode) {
+        case 'gross-annual':
+          return 'net/mois'
+        case 'net-monthly':
+          return 'net/mois'
+        default:
+          return ''
+      }
     }
   },
   methods: {
@@ -61,7 +71,7 @@ export default defineComponent({
       <span v-else-if="salary.state === 'down'"> 📉 </span>
       <span v-else> 📅 </span>
     </div>
-    <div class="mb-5 block max-w-md grow p-2">
+    <div class="relative mb-5 block max-w-md grow p-2">
       <p class="text-sm text-neutral-500">
         {{ salary.originalSalary.date }}
       </p>
@@ -84,6 +94,23 @@ export default defineComponent({
       >
         Supprimer
       </button>
+      <div
+        v-if="configuration.incomeMode === 'gross-annual'"
+        class="md:auto hidden whitespace-nowrap md:absolute md:left-full md:top-5 md:z-10 md:-ml-5 md:rounded-r-3xl md:border md:bg-white md:p-3 md:shadow-md md:shadow-red-500 md:group-hover/salary:block"
+      >
+        <h4 class="m-1 text-lg font-medium">
+          Soit {{ salary.income.toPrecision(5) }}{{ configuration.currency }}
+          <small class="text-sm text-neutral-800"> {{ effectiveSalaryRecurrence }} </small>
+        </h4>
+        <p class="text-xs text-slate-500">
+          {{ salary.originalSalary.income }} * (1 - imposition / 100) / 12
+        </p>
+        <p class="text-xs text-slate-500">
+          avec une imposition
+          <RouterLink to="/configure" class="underline">configurée</RouterLink> à
+          {{ configuration.imposition }}%
+        </p>
+      </div>
     </div>
   </li>
 </template>
