@@ -41,6 +41,7 @@ export default defineComponent({
       let lastSalary: AdjustedSalary
 
       const adjustedSalaries = [] as AdjustedSalary[]
+      adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(clonedSalaries.shift()!)))
 
       while (year < toYear || month <= toMonth) {
         let date = year + '-' + ('' + month).padStart(2, '0')
@@ -48,19 +49,13 @@ export default defineComponent({
         cumulatedInflation *= inflation
 
         if (clonedSalaries.length > 0 && date == clonedSalaries[0].date) {
-          const salary = clonedSalaries.shift()!
-
-          if (adjustedSalaries.length == 0) {
-            adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(salary)))
-          } else {
-            adjustedSalaries.push(
-              (lastSalary = AdjustedSalaryCreateFromPrevious(
-                salary,
-                lastSalary,
-                cumulatedInflation
-              ))
-            )
-          }
+          adjustedSalaries.push(
+            (lastSalary = AdjustedSalaryCreateFromPrevious(
+              clonedSalaries.shift()!,
+              lastSalary,
+              cumulatedInflation
+            ))
+          )
         } else {
           adjustedSalaries.push(AdjustedSalaryCreateFiller(date, lastSalary, cumulatedInflation))
         }

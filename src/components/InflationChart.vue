@@ -46,9 +46,9 @@ export default defineComponent({
   },
   computed: {
     chartData() {
-      const labels = []
-      const incomes = []
-      const incomesAdjusted = []
+      const labels = [] as string[]
+      const incomes = [] as number[]
+      const incomesAdjusted = [] as number[]
       this.adjustedSalaries.forEach((salary: AdjustedSalary): void => {
         labels.push(salary.date)
         incomes.push(salary.income)
@@ -74,10 +74,10 @@ export default defineComponent({
             pointStyle: false
           }
         ]
-      }
+      } as any
     },
     chartOptions() {
-      const ticks = []
+      const ticks = [] as (string | null)[]
       this.adjustedSalaries.forEach((salary: AdjustedSalary): void => {
         ticks.push(salary.originalSalary !== null ? salary.originalSalary.date : '')
       })
@@ -95,7 +95,7 @@ export default defineComponent({
               text: 'Mois'
             },
             ticks: {
-              callback: function (val, index) {
+              callback: function (val: number, index: number) {
                 return ticks[index]
               }
             }
@@ -113,7 +113,7 @@ export default defineComponent({
             propagate: false
           }
         }
-      }
+      } as any
     }
   }
 })
