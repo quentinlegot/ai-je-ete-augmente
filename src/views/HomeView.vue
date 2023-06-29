@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { Salary } from '@/components/Salary'
 import type { AdjustedSalary } from '@/components/AdjustedSalary'
+import InflationChart from '@/components/InflationChart.vue'
 import SalaryDisplay from '@/components/SalaryDisplay.vue'
 import SalaryNew from '@/components/SalaryNew.vue'
 import { defineComponent } from 'vue'
@@ -11,7 +12,7 @@ import {
 } from '@/components/AdjustedSalary'
 
 export default defineComponent({
-  components: { SalaryDisplay, SalaryNew },
+  components: { InflationChart, SalaryDisplay, SalaryNew },
   data() {
     return {
       salaries: [] as Salary[]
@@ -61,7 +62,7 @@ export default defineComponent({
             )
           }
         } else {
-          adjustedSalaries.push(AdjustedSalaryCreateFiller(lastSalary, cumulatedInflation))
+          adjustedSalaries.push(AdjustedSalaryCreateFiller(date, lastSalary, cumulatedInflation))
         }
 
         month++
@@ -102,7 +103,7 @@ export default defineComponent({
 
 <template>
   <main class="p-5 md:flex md:flex-row">
-    <section class="md:basis-80">
+    <section class="inline-block shrink-0">
       <div class="contents" :class="salaries.length == 0 ? 'invisible' : ''">
         <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
         <ol class="border-l-2 border-red-500">
@@ -116,6 +117,8 @@ export default defineComponent({
       </div>
       <salary-new v-on:addSalary="addSalary" v-bind:new-key="nextKey" />
     </section>
-    <section class="grow"></section>
+    <section class="grow">
+      <inflation-chart :adjusted-salaries="adjustedSalaries" />
+    </section>
   </main>
 </template>

@@ -2,6 +2,7 @@ import type { Salary } from '@/components/Salary'
 import { SharedConfiguration } from '@/components/SharedConfiguration'
 
 export interface AdjustedSalary {
+  readonly date: string
   readonly income: number
   readonly incomeAdjusted: number
   readonly inflation: number
@@ -18,6 +19,7 @@ export function AdjustedSalaryCreateFirst(salary: Salary): AdjustedSalary {
       : salary.income
 
   return {
+    date: salary.date,
     income: monthlyIncome,
     incomeAdjusted: monthlyIncome,
     inflation: 1,
@@ -39,6 +41,7 @@ export function AdjustedSalaryCreateFromPrevious(
       : salary.income
 
   return {
+    date: salary.date,
     income: monthlyIncome,
     incomeAdjusted: monthlyIncome / inflation,
     inflation: inflation,
@@ -50,10 +53,12 @@ export function AdjustedSalaryCreateFromPrevious(
 }
 
 export function AdjustedSalaryCreateFiller(
+  date: string,
   lastSalary: AdjustedSalary,
   inflation: number
 ): AdjustedSalary {
   return {
+    date: date,
     income: lastSalary.income,
     incomeAdjusted: lastSalary.income / inflation,
     inflation: inflation,
