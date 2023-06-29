@@ -79,15 +79,33 @@ export default defineComponent({
         {{ salary.originalSalary.income }}{{ configuration.currency }}
         <small class="text-sm text-neutral-800"> {{ salaryRecurrence }} </small>
       </h3>
-      <p v-if="salary.salaryChange !== 0" class="text-sm text-neutral-500">
-        augmentation annoncé :
-        <span class="text-red-500">{{ salaryChange }}</span>
+      <p v-if="salary.salaryChangeAdjusted === 0" class="text-sm text-neutral-500">
+        Salaire de référence
       </p>
-      <p v-if="salary.salaryChange !== 0" class="text-sm text-neutral-500">
-        changement réel :
-        <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
+      <p v-else-if="salary.salaryChange === Infinity" class="text-sm text-neutral-500">
+        Nouveau salaire
       </p>
-      <p v-else class="text-sm text-neutral-500">Salaire de référence</p>
+      <template v-else-if="salary.salaryChange > 0">
+        <p class="text-sm text-neutral-500">
+          augmentation annoncé :
+          <span class="text-red-500">{{ salaryChange }}</span>
+        </p>
+        <p class="text-sm text-neutral-500">
+          changement réel :
+          <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
+        </p>
+      </template>
+      <template v-else-if="salary.salaryChange < 0 && salary.income > 0">
+        <p class="text-sm text-neutral-500">
+          perte de salaire :
+          <span class="text-red-500">{{ salaryChange }}</span>
+        </p>
+        <p class="text-sm text-neutral-500">
+          changement réel :
+          <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
+        </p>
+      </template>
+      <p v-else-if="salary.income === 0" class="text-sm text-neutral-500">Perte de revenus</p>
       <button
         v-on:click="removeSalary(salary)"
         class="invisible rounded border border-yellow-300 p-1 text-sm hover:bg-yellow-300 hover:text-white group-hover/salary:visible"
