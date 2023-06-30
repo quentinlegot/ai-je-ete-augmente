@@ -7,8 +7,14 @@ export interface Configuration {
   incomeMode: IncomeMode
 }
 
-export const SharedConfiguration: Configuration = reactive({
+export const DefaultConfiguration: Configuration = {
   currency: '€' as string,
   imposition: 35 as number,
   incomeMode: 'net-monthly' as IncomeMode
+}
+
+export const SharedConfiguration: Configuration = reactive({
+  currency: DefaultConfiguration.currency,
+  imposition: DefaultConfiguration.imposition,
+  incomeMode: DefaultConfiguration.incomeMode
 })
