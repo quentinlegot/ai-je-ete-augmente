@@ -43,7 +43,7 @@ export default defineComponent({
       const adjustedSalaries = [] as AdjustedSalary[]
       adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(clonedSalaries.shift()!)))
 
-      while (year < toYear || month <= toMonth) {
+      while (year < toYear || month <= toMonth || clonedSalaries.length > 0) {
         let date = year + '-' + ('' + month).padStart(2, '0')
         let inflation = 1.002
         cumulatedInflation *= inflation
