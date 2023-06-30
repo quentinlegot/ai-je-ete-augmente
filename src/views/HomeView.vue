@@ -72,6 +72,12 @@ export default defineComponent({
   },
   methods: {
     addSalary(newSalary: Salary): void {
+      if (
+        this.salaries.filter((salary: Salary): boolean => salary.date === newSalary.date).length > 0
+      ) {
+        return
+      }
+
       this.salaries.push(newSalary)
       this.salaries.sort((s1: Salary, s2: Salary): number => (s1.date < s2.date ? -1 : 1))
     },
@@ -98,7 +104,7 @@ export default defineComponent({
 
 <template>
   <main class="p-5 md:flex md:flex-row">
-    <section class="inline-block shrink-0">
+    <section class="inline-block">
       <div class="contents" :class="salaries.length == 0 ? 'invisible' : ''">
         <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
         <ol class="border-l-2 border-red-500">
@@ -110,7 +116,7 @@ export default defineComponent({
           />
         </ol>
       </div>
-      <salary-new v-on:addSalary="addSalary" v-bind:new-key="nextKey" />
+      <salary-new v-on:addSalary="addSalary" v-bind:salaries="salaries" v-bind:new-key="nextKey" />
     </section>
     <section class="grow">
       <inflation-chart :adjusted-salaries="adjustedSalaries" />
