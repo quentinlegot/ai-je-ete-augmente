@@ -83,7 +83,7 @@ export default defineComponent({
   >
     ⚠️ {{ errorMessage }}
   </p>
-  <h2 class="mt-5 text-slate-800">Ajouter un salaire</h2>
+  <h2 class="text-slate-800">Ajouter un salaire</h2>
   <form v-on:submit.prevent="addSalary()" class="relative min-w-0 text-xs">
     <label for="newDate" class="mt-3 block"> Date du changement de salaire </label>
     <input

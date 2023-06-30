@@ -105,9 +105,9 @@ export default defineComponent({
 <template>
   <main class="p-5 md:flex md:flex-row">
     <section class="inline-block">
-      <div class="contents" :class="salaries.length == 0 ? 'invisible' : ''">
+      <div class="contents" :class="salaries.length == 0 ? 'hidden' : ''">
         <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
-        <ol class="border-l-2 border-red-500">
+        <ol class="mb-5 border-l-2 border-red-500">
           <salary-display
             v-for="(adjustedSalary, index) in adjustedSalaries"
             v-bind:key="index"
