@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <main class="p-5">
+  <main class="mx-auto max-w-screen-lg p-5">
     <h2 class="mb-5 text-slate-800">Configurer l'application</h2>
     <div class="divide-y-2 divide-dashed">
       <form class="mb-5 grid grid-cols-1">
@@ -106,5 +106,3 @@ export default defineComponent({
     </div>
   </main>
 </template>
-
-<style></style>

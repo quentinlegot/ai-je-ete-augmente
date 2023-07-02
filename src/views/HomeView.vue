@@ -103,7 +103,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <main class="p-5 md:flex md:flex-row">
+  <main
+    class="p-5 md:flex md:flex-row"
+    :class="salaries.length === 0 ? 'mx-auto max-w-screen-lg' : ''"
+  >
     <section class="inline-block">
       <div class="contents" :class="salaries.length == 0 ? 'hidden' : ''">
         <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
