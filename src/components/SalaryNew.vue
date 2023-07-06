@@ -20,12 +20,46 @@ export default defineComponent({
   data() {
     return {
       configuration: SharedConfiguration as Configuration,
+      date: new Date() as Date,
       errorMessage: '' as string,
-      newDate: null as string | null,
+      newDateYear: '' as string,
+      newDateMonth: '' as string,
       newIncome: null as number | null
     }
   },
   computed: {
+    availableYears(): Array<string> {
+      let availableYears = [] as string[]
+      let year = this.date.getFullYear()
+
+      while (year > 2000) {
+        availableYears.push(year.toString())
+        year--
+      }
+
+      return availableYears
+    },
+    availableMonths(): Array<String> {
+      if (this.newDateYear !== this.date.getFullYear().toString()) {
+        return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].flatMap(
+          (month: string) =>
+            this.salaries.filter(
+              (salary: Salary): boolean => salary.date === this.newDateYear + '-' + month
+            ).length === 0
+              ? [month]
+              : []
+        )
+      }
+
+      let availableMonths = [] as string[]
+      let month = this.date.getMonth()
+
+      for (let m = 0; m < month; m++) {
+        availableMonths.push((m + 1).toString().padStart(2, '0'))
+      }
+
+      return availableMonths
+    },
     placeholderSalary(): string {
       switch (this.configuration.incomeMode) {
         case 'gross-annual':
@@ -39,22 +73,22 @@ export default defineComponent({
   },
   methods: {
     addSalary(): void {
-      if (this.newDate === null || this.newIncome == null) {
+      if (this.newDateYear === '' || this.newDateMonth === '' || this.newIncome == null) {
         return
       }
-      if (
-        this.salaries.filter((salary: Salary): boolean => salary.date === this.newDate).length > 0
-      ) {
+      const newDate = this.newDateYear + '-' + this.newDateMonth
+      if (this.salaries.filter((salary: Salary): boolean => salary.date === newDate).length > 0) {
         this.errorMessage =
-          'salaire déjà renseigné sur le mois ' + this.newDate + ", supprimez le d'abord"
+          'salaire déjà renseigné sur le mois ' + newDate + ", supprimez le d'abord"
         return
       }
       this.$emit('addSalary', {
-        date: this.newDate,
+        date: newDate,
         income: this.newIncome,
         key: this.newKey
       })
-      this.newDate = null
+      this.newDateYear = ''
+      this.newDateMonth = ''
       this.newIncome = null
       this.errorMessage = ''
     }
@@ -62,10 +96,10 @@ export default defineComponent({
   watch: {
     salaries: {
       handler(): void {
+        const newDate = this.newDateYear + '-' + this.newDateMonth
         if (
           this.errorMessage !== '' &&
-          this.salaries.filter((salary: Salary): boolean => salary.date === this.newDate).length ===
-            0
+          this.salaries.filter((salary: Salary): boolean => salary.date === newDate).length === 0
         ) {
           this.errorMessage = ''
         }
@@ -85,15 +119,29 @@ export default defineComponent({
   </p>
   <h2 class="text-slate-800">Ajouter un salaire</h2>
   <form v-on:submit.prevent="addSalary()" class="relative min-w-0 text-xs">
-    <label for="newDate" class="mt-3 block"> Date du changement de salaire </label>
-    <input
-      type="month"
-      min="2011-01"
-      required
-      v-model="newDate"
-      id="newDate"
-      class="block w-full"
-    />
+    <label for="newDateYear" class="mt-3 block"> Date du changement de salaire </label>
+    <div>
+      <select required v-model="newDateYear" id="newDateYear" class="inline-block w-1/2">
+        <option value="" selected disabled>Year</option>
+        <option
+          v-for="(availableYear, index) in availableYears"
+          v-bind:key="index"
+          :value="availableYear"
+        >
+          {{ availableYear }}
+        </option>
+      </select>
+      <select required v-model="newDateMonth" id="newDateMonth" class="inline-block w-1/2">
+        <option value="" selected disabled>Month</option>
+        <option
+          v-for="(availableMonth, index) in availableMonths"
+          v-bind:key="index"
+          :value="availableMonth"
+        >
+          {{ availableMonth }}
+        </option>
+      </select>
+    </div>
     <label for="newDate" class="mt-3 block"> Montant du nouveau salaire </label>
     <input
       type="number"
