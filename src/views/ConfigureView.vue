@@ -6,7 +6,9 @@ import { SharedConfiguration, DefaultConfiguration } from '@/components/SharedCo
 export default defineComponent({
   data() {
     return {
-      configuration: SharedConfiguration as Configuration
+      configuration: SharedConfiguration as Configuration,
+      saved: 0 as number,
+      savedTimeout: null as null | number
     }
   },
   methods: {
@@ -23,6 +25,19 @@ export default defineComponent({
         alert('Reinitialisation effectuée !')
       }
     }
+  },
+  watch: {
+    configuration: {
+      handler(): void {
+        if (this.savedTimeout !== null) {
+          window.clearTimeout(this.savedTimeout)
+          this.savedTimeout = null
+        }
+        this.saved++
+        this.savedTimeout = window.setTimeout(() => (this.saved = 0), 2500)
+      },
+      deep: true
+    }
   }
 })
 </script>
@@ -30,6 +45,16 @@ export default defineComponent({
 <template>
   <main class="mx-auto max-w-screen-lg p-5">
     <h2 class="mb-5 text-slate-800">Configurer l'application</h2>
+    <blockquote
+      v-if="saved > 0"
+      class="mb-5 rounded border border-green-800 p-5 text-sm text-green-800"
+    >
+      Les paramètres ont été sauvegardé
+      <template v-if="saved > 1"> ({{ saved }}) </template>
+    </blockquote>
+    <blockquote v-else class="mb-5 rounded border p-5 text-sm text-slate-500">
+      Les paramètres sont sauvegardé automatiquement
+    </blockquote>
     <div class="divide-y-2 divide-dashed">
       <form class="mb-5" v-on:submit.prevent="">
         <label for="newDate" class="block"> Devise </label>
