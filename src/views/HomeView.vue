@@ -50,6 +50,11 @@ export default defineComponent({
         let sMonth = ('' + month).padStart(2, '0')
         let sYear = '' + year
         let date = sYear + '-' + sMonth
+        if (!(sYear in this.inflationRates) || !(sMonth in this.inflationRates[sYear])) {
+          if (clonedSalaries.length === 0) {
+            break
+          }
+        }
         let inflation =
           sYear in this.inflationRates && sMonth in this.inflationRates[sYear]
             ? this.inflationRates[sYear][sMonth]
