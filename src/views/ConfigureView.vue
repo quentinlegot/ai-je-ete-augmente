@@ -31,21 +31,19 @@ export default defineComponent({
   <main class="mx-auto max-w-screen-lg p-5">
     <h2 class="mb-5 text-slate-800">Configurer l'application</h2>
     <div class="divide-y-2 divide-dashed">
-      <form class="mb-5 grid grid-cols-1">
-        <label for="newDate" class="md:flex md:flex-row md:justify-between">
-          <span> Devise </span>
-          <small class="text-xs"> Ne sert que pour l'affichage </small>
-        </label>
+      <form class="mb-5" v-on:submit.prevent="">
+        <label for="newDate" class="block"> Devise </label>
         <input
           type="text"
           required
           v-model="configuration.currency"
           id="configCurrency"
-          class="mb-5"
+          class="ml-3 block md:inline"
         />
+        <small class="ml-3 block text-xs md:inline-block"> Ne sert que pour l'affichage </small>
 
-        <fieldset>
-          <legend class="mb-3 underline">Fonctionnement du salaire</legend>
+        <fieldset class="mt-3">
+          <legend>Fonctionnement du salaire</legend>
           <input
             type="radio"
             value="gross-annual"
@@ -95,7 +93,7 @@ export default defineComponent({
           </div>
         </fieldset>
       </form>
-      <form class="mb-5 grid grid-cols-1 pt-5" v-on:submit.prevent="reset()">
+      <form class="mb-5 pt-5" v-on:submit.prevent="reset()">
         <button
           type="submit"
           class="mt-3 rounded border border-orange-500 p-2 hover:bg-orange-500 hover:text-white"
