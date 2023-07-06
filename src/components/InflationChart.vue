@@ -60,8 +60,8 @@ export default defineComponent({
           {
             label: 'Salaires',
             data: incomes,
-            backgroundColor: 'rgb(220, 220, 220, 0.1)',
-            borderColor: 'rgb(220, 220, 220)',
+            backgroundColor: 'rgba(68,68,239,0.2)',
+            borderColor: 'rgb(68,68,239)',
             pointStyle: false
           },
           {
@@ -69,7 +69,7 @@ export default defineComponent({
             data: incomesAdjusted,
             cubicInterpolationMode: 'monotone',
             fill: '-1',
-            backgroundColor: 'rgb(239, 68, 68, 0.1)',
+            backgroundColor: 'rgb(239, 68, 68, 0.2)',
             borderColor: 'rgb(239, 68, 68)',
             pointStyle: false
           }
