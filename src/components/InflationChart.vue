@@ -38,10 +38,7 @@ export default defineComponent({
   },
   data() {
     return {
-      configuration: SharedConfiguration as Configuration,
-      today: (new Date().getFullYear() +
-        '-' +
-        (new Date().getMonth() + 1 + '').padStart(2, '0')) as string
+      configuration: SharedConfiguration as Configuration
     }
   },
   computed: {
