@@ -117,10 +117,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <ChartLine
-    v-if="adjustedSalaries.length > 0"
-    :data="chartData"
-    :options="chartOptions"
-    class="sticky top-0"
-  />
+  <ChartLine v-if="adjustedSalaries.length > 0" :data="chartData" :options="chartOptions" />
 </template>

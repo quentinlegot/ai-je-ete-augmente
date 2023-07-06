@@ -18,7 +18,8 @@ export default defineComponent({
   data() {
     return {
       inflationRates: {} as InflationRates,
-      salaries: [] as Salary[]
+      salaries: [] as Salary[],
+      missingInflationRates: [] as Array<string>
     }
   },
   computed: {
@@ -46,6 +47,8 @@ export default defineComponent({
       const adjustedSalaries = [] as AdjustedSalary[]
       adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(clonedSalaries.shift()!)))
 
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.missingInflationRates = []
       while (year < toYear || month <= toMonth || clonedSalaries.length > 0) {
         let sMonth = ('' + month).padStart(2, '0')
         let sYear = '' + year
@@ -54,6 +57,8 @@ export default defineComponent({
           if (clonedSalaries.length === 0) {
             break
           }
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.missingInflationRates.push(date)
         }
         let inflation =
           sYear in this.inflationRates && sMonth in this.inflationRates[sYear]
@@ -121,7 +126,7 @@ export default defineComponent({
     class="p-5 md:flex md:flex-row"
     :class="salaries.length === 0 ? 'mx-auto max-w-screen-lg' : ''"
   >
-    <section class="inline-block">
+    <section class="inline-block shrink-0">
       <div class="contents" :class="salaries.length == 0 ? 'hidden' : ''">
         <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
         <ol class="mb-5 border-l-2 border-red-500">
@@ -136,7 +141,17 @@ export default defineComponent({
       <salary-new v-on:addSalary="addSalary" v-bind:salaries="salaries" v-bind:new-key="nextKey" />
     </section>
     <section class="grow">
-      <inflation-chart :adjusted-salaries="adjustedSalaries" />
+      <div class="sticky top-0">
+        <inflation-chart :adjusted-salaries="adjustedSalaries" />
+        <p v-if="missingInflationRates.length > 1" class="m-5 p-2 text-sm italic">
+          Attention, {{ missingInflationRates.length }} taux d'inflation sont inconnues. Il s'agit
+          des périodes suivantes : {{ missingInflationRates.join(', ') }}
+        </p>
+        <p v-else-if="missingInflationRates.length > 0" class="m-5 p-2 text-sm italic">
+          Attention, le taux d'inflation pour la période du
+          {{ missingInflationRates.join(', ') }} n'est pas connu
+        </p>
+      </div>
     </section>
   </main>
 </template>
