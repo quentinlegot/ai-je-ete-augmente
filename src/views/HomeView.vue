@@ -10,11 +10,14 @@ import {
   AdjustedSalaryCreateFirst,
   AdjustedSalaryCreateFromPrevious
 } from '@/components/AdjustedSalary'
+import type { InflationRates } from '@/components/InflationRates'
+import inflationRatesData from '@/assets/inflation.fr.json'
 
 export default defineComponent({
   components: { InflationChart, SalaryDisplay, SalaryNew },
   data() {
     return {
+      inflationRates: {} as InflationRates,
       salaries: [] as Salary[]
     }
   },
@@ -44,9 +47,14 @@ export default defineComponent({
       adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(clonedSalaries.shift()!)))
 
       while (year < toYear || month <= toMonth || clonedSalaries.length > 0) {
-        let date = year + '-' + ('' + month).padStart(2, '0')
-        let inflation = 1.002
-        cumulatedInflation *= inflation
+        let sMonth = ('' + month).padStart(2, '0')
+        let sYear = '' + year
+        let date = sYear + '-' + sMonth
+        let inflation =
+          sYear in this.inflationRates && sMonth in this.inflationRates[sYear]
+            ? this.inflationRates[sYear][sMonth]
+            : 0
+        cumulatedInflation *= 1 + inflation / 100
 
         if (clonedSalaries.length > 0 && date == clonedSalaries[0].date) {
           adjustedSalaries.push(
@@ -86,6 +94,7 @@ export default defineComponent({
     }
   },
   mounted() {
+    this.inflationRates = inflationRatesData
     let retrievedSalaries = localStorage.getItem('salaries')
     if (retrievedSalaries) {
       this.salaries = JSON.parse(retrievedSalaries)
