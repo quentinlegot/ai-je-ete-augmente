@@ -44,7 +44,7 @@ export default defineComponent({
 
 <template>
   <main class="mx-auto max-w-screen-lg p-5">
-    <h2 class="mb-5 text-slate-800">Configurer l'application</h2>
+    <h2 class="my-5 text-lg text-slate-800">Configurer l'application</h2>
     <blockquote
       v-if="saved > 0"
       class="mb-5 rounded border border-green-800 p-5 text-sm text-green-800"

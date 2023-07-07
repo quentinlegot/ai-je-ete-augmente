@@ -128,7 +128,7 @@ export default defineComponent({
   >
     <section class="inline-block shrink-0">
       <div class="contents" :class="salaries.length == 0 ? 'hidden' : ''">
-        <h2 class="mb-5 text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
+        <h2 class="my-5 text-lg text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
         <ol class="mb-5 border-l-2 border-red-500">
           <salary-display
             v-for="(adjustedSalary, index) in adjustedSalaries"
