@@ -46,6 +46,11 @@ export default defineComponent({
 
       const adjustedSalaries = [] as AdjustedSalary[]
       adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(clonedSalaries.shift()!)))
+      month++
+      if (month > 12) {
+        month = 1
+        year++
+      }
 
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.missingInflationRates = []
