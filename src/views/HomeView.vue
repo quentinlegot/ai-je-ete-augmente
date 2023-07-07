@@ -41,7 +41,7 @@ export default defineComponent({
       const [sYear, sMonth] = clonedSalaries[0].date.split('-')
       let month = parseInt(sMonth)
       let year = parseInt(sYear)
-      let cumulatedInflation = 1
+      let cumulatedInflationMultiplier = 1
       let lastSalary: AdjustedSalary
 
       const adjustedSalaries = [] as AdjustedSalary[]
@@ -65,22 +65,24 @@ export default defineComponent({
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.missingInflationRates.push(date)
         }
-        let inflation =
+        let inflationRate =
           sYear in this.inflationRates && sMonth in this.inflationRates[sYear]
             ? this.inflationRates[sYear][sMonth]
             : 0
-        cumulatedInflation *= 1 + inflation / 100
+        cumulatedInflationMultiplier *= 1 + inflationRate / 100
 
         if (clonedSalaries.length > 0 && date == clonedSalaries[0].date) {
           adjustedSalaries.push(
             (lastSalary = AdjustedSalaryCreateFromPrevious(
               clonedSalaries.shift()!,
               lastSalary,
-              cumulatedInflation
+              cumulatedInflationMultiplier
             ))
           )
         } else {
-          adjustedSalaries.push(AdjustedSalaryCreateFiller(date, lastSalary, cumulatedInflation))
+          adjustedSalaries.push(
+            AdjustedSalaryCreateFiller(date, lastSalary, cumulatedInflationMultiplier)
+          )
         }
 
         month++

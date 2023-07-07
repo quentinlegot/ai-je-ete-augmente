@@ -5,7 +5,7 @@ export interface AdjustedSalary {
   readonly date: string
   readonly income: number
   readonly incomeAdjusted: number
-  readonly inflation: number
+  readonly cumulatedInflationMultiplier: number
   readonly originalSalary: Salary | null
   readonly salaryChange: number
   readonly salaryChangeAdjusted: number
@@ -22,7 +22,7 @@ export function AdjustedSalaryCreateFirst(salary: Salary): AdjustedSalary {
     date: salary.date,
     income: monthlyIncome,
     incomeAdjusted: monthlyIncome,
-    inflation: 1,
+    cumulatedInflationMultiplier: 1,
     originalSalary: salary,
     salaryChange: 0,
     salaryChangeAdjusted: 0,
@@ -33,7 +33,7 @@ export function AdjustedSalaryCreateFirst(salary: Salary): AdjustedSalary {
 export function AdjustedSalaryCreateFromPrevious(
   salary: Salary,
   lastSalary: AdjustedSalary,
-  inflation: number
+  cumulatedInflationMultiplier: number
 ): AdjustedSalary {
   const monthlyIncome: number =
     SharedConfiguration.incomeMode === 'gross-annual'
@@ -43,28 +43,31 @@ export function AdjustedSalaryCreateFromPrevious(
   return {
     date: salary.date,
     income: monthlyIncome,
-    incomeAdjusted: monthlyIncome / inflation,
-    inflation: inflation,
+    incomeAdjusted: monthlyIncome / cumulatedInflationMultiplier,
+    cumulatedInflationMultiplier: cumulatedInflationMultiplier,
     originalSalary: salary,
     salaryChange: (monthlyIncome / lastSalary.income - 1) * 100,
-    salaryChangeAdjusted: (monthlyIncome / inflation / lastSalary.incomeAdjusted - 1) * 100,
-    state: lastSalary.incomeAdjusted >= monthlyIncome / inflation ? 'down' : 'up'
+    salaryChangeAdjusted:
+      (monthlyIncome / cumulatedInflationMultiplier / lastSalary.incomeAdjusted - 1) * 100,
+    state: lastSalary.incomeAdjusted >= monthlyIncome / cumulatedInflationMultiplier ? 'down' : 'up'
   }
 }
 
 export function AdjustedSalaryCreateFiller(
   date: string,
   lastSalary: AdjustedSalary,
-  inflation: number
+  cumulatedInflationMultiplier: number
 ): AdjustedSalary {
   return {
     date: date,
     income: lastSalary.income,
-    incomeAdjusted: lastSalary.income / inflation,
-    inflation: inflation,
+    incomeAdjusted: lastSalary.income / cumulatedInflationMultiplier,
+    cumulatedInflationMultiplier: cumulatedInflationMultiplier,
     originalSalary: null,
     salaryChange: 0,
-    salaryChangeAdjusted: (lastSalary.income / inflation / lastSalary.incomeAdjusted - 1) * 100,
-    state: lastSalary.incomeAdjusted >= lastSalary.income * inflation ? 'down' : 'up'
+    salaryChangeAdjusted:
+      (lastSalary.income / cumulatedInflationMultiplier / lastSalary.incomeAdjusted - 1) * 100,
+    state:
+      lastSalary.incomeAdjusted >= lastSalary.income * cumulatedInflationMultiplier ? 'down' : 'up'
   }
 }
