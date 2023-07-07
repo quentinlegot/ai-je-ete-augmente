@@ -68,7 +68,7 @@ export default defineComponent({
         <small class="ml-3 block text-xs md:inline-block"> Ne sert que pour l'affichage </small>
 
         <fieldset class="mt-3">
-          <legend>Fonctionnement du salaire</legend>
+          <legend>Mode de calculs en fonction du type de salaire</legend>
           <input
             type="radio"
             value="gross-annual"
@@ -99,6 +99,17 @@ export default defineComponent({
           >
             Salaire mensuel net
           </label>
+          <small
+            class="m-3 hidden text-xs peer-checked/gross-annual:block peer-hover/gross-annual:block peer-hover/net-monthly:hidden"
+          >
+            Une portion d'imposition est retirée des revenus annuels bruts qui sont ensuite évalués
+            par mois en fonction de l'inflation
+          </small>
+          <small
+            class="m-3 hidden text-xs peer-checked/net-monthly:block peer-hover/net-monthly:block peer-hover/gross-annual:hidden"
+          >
+            Les revenus mensuels sont directement évalués en fonction de l'inflation
+          </small>
           <div class="ml-3 hidden peer-checked/gross-annual:block md:mt-3">
             <label for="con"> Imposition (%) </label>
             <input
