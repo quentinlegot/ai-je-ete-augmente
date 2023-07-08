@@ -111,7 +111,7 @@ export default defineComponent({
             Les revenus mensuels sont directement évalués en fonction de l'inflation
           </small>
           <div class="ml-3 hidden peer-checked/gross-annual:block md:mt-3">
-            <label for="con"> Imposition (%) </label>
+            <label for="configImposition"> Imposition (%) </label>
             <input
               type="number"
               size="3"
