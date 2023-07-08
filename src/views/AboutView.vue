@@ -61,5 +61,12 @@
         >sur twitter 🐦</a
       >.
     </p>
+    <h2 class="my-5 text-lg text-slate-800">Mentions Légales</h2>
+    <p class="mb-3 p-3">
+      Ce site est hébergé par
+      <a href="https://www.ovhcloud.com/fr/terms-and-conditions/" target="_blank" class="underline"
+        >OVH</a
+      >, 2 rue Kellermann - 59100 Roubaix - France
+    </p>
   </main>
 </template>
