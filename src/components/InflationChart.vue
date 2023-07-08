@@ -55,14 +55,14 @@ export default defineComponent({
         labels: labels,
         datasets: [
           {
-            label: 'Salaires',
+            label: 'Salaires annoncés',
             data: incomes,
             backgroundColor: 'rgba(68,68,239,0.2)',
             borderColor: 'rgb(68,68,239)',
             pointStyle: false
           },
           {
-            label: 'Salaires ajustés',
+            label: "Salaires réels ajustés suivant l'inflation",
             data: incomesAdjusted,
             cubicInterpolationMode: 'monotone',
             fill: '-1',
@@ -74,7 +74,7 @@ export default defineComponent({
       } as any
     },
     chartOptions() {
-      const ticks = [] as (string | null)[]
+      const ticks = [] as string[]
       this.adjustedSalaries.forEach((salary: AdjustedSalary): void => {
         ticks.push(salary.originalSalary !== null ? salary.originalSalary.date : '')
       })
@@ -100,7 +100,7 @@ export default defineComponent({
           y: {
             title: {
               display: true,
-              text: 'Salaire en ' + this.configuration.currency
+              text: "Pouvoir d'achat en " + this.configuration.currency
             },
             position: 'right'
           }
