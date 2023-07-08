@@ -108,7 +108,7 @@ export default defineComponent({
       <p v-else-if="salary.income === 0" class="text-sm text-neutral-500">Perte de revenus</p>
       <button
         v-on:click="removeSalary(salary)"
-        class="invisible rounded border border-yellow-300 p-1 text-sm hover:bg-yellow-300 hover:text-white group-hover/salary:visible"
+        class="rounded border border-yellow-100 p-1 text-sm text-slate-300 hover:bg-yellow-300 hover:text-white group-hover/salary:border-yellow-300 group-hover/salary:text-black"
       >
         Supprimer
       </button>
