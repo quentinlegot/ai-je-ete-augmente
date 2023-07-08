@@ -55,7 +55,14 @@ export default defineComponent({
       let month = this.date.getMonth()
 
       for (let m = 0; m < month; m++) {
-        availableMonths.push((m + 1).toString().padStart(2, '0'))
+        let sMonth = (m + 1).toString().padStart(2, '0')
+        if (
+          this.salaries.filter(
+            (salary: Salary): boolean => salary.date === this.newDateYear + '-' + sMonth
+          ).length === 0
+        ) {
+          availableMonths.push(sMonth)
+        }
       }
 
       return availableMonths
