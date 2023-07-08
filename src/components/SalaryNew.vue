@@ -122,7 +122,7 @@ export default defineComponent({
     <label for="newDateYear" class="mt-3 block"> Date du changement de salaire </label>
     <div>
       <select required v-model="newDateYear" id="newDateYear" class="inline-block w-1/2">
-        <option value="" selected disabled>Year</option>
+        <option value="" selected disabled>Année</option>
         <option
           v-for="(availableYear, index) in availableYears"
           v-bind:key="index"
@@ -132,7 +132,7 @@ export default defineComponent({
         </option>
       </select>
       <select required v-model="newDateMonth" id="newDateMonth" class="inline-block w-1/2">
-        <option value="" selected disabled>Month</option>
+        <option value="" selected disabled>Mois</option>
         <option
           v-for="(availableMonth, index) in availableMonths"
           v-bind:key="index"
