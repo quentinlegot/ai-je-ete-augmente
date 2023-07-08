@@ -2,7 +2,7 @@
   <main class="mx-auto max-w-screen-lg p-5">
     <h2 class="my-5 text-lg text-slate-800">A propos</h2>
     <p class="mb-3 p-3">
-      Au cours de l'année 2022, on a pu voir les taux d'inflation s'envoler en france. Le question
+      Au cours de l'année 2022, on a pu voir les taux d'inflation s'envoler en france. La question
       s'est posée pour beaucoup de savoir si les "augmentations" annuelles allaient au moins couvrir
       la hausse des prix.
     </p>
