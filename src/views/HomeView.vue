@@ -12,9 +12,10 @@ import {
 } from '@/components/AdjustedSalary'
 import type { InflationRates } from '@/components/InflationRates'
 import inflationRatesData from '@/assets/inflation.fr.json'
+import AdjustedSalariesSummary from '@/components/AdjustedSalariesSummary.vue'
 
 export default defineComponent({
-  components: { InflationChart, SalaryDisplay, SalaryNew },
+  components: { AdjustedSalariesSummary, InflationChart, SalaryDisplay, SalaryNew },
   data() {
     return {
       inflationRates: {} as InflationRates,
@@ -158,6 +159,7 @@ export default defineComponent({
           Attention, le taux d'inflation pour la période du
           {{ missingInflationRates.join(', ') }} n'est pas connu
         </p>
+        <adjusted-salaries-summary :adjusted-salaries="adjustedSalaries" />
       </div>
     </section>
   </main>
