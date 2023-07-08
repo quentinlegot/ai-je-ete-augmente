@@ -50,5 +50,16 @@
         >les sources sont disponibles ici</a
       >.
     </p>
+    <h2 class="my-5 text-lg text-slate-800">Discuter</h2>
+    <p class="mb-3 p-3">
+      Pour discuter du projet, rendez-vous
+      <a href="https://social.vivaldi.net/@larsvanciental" target="_blank" class="underline"
+        >sur mastodon 🦣</a
+      >
+      ou bien
+      <a href="https://twitter.com/LarsVanCiental" target="_blank" class="underline"
+        >sur twitter 🐦</a
+      >.
+    </p>
   </main>
 </template>
