@@ -43,7 +43,9 @@ export default {
       </RouterLink>
     </h1>
     <nav class="divide-y divide-dashed md:flex md:grow md:flex-row md:justify-end md:divide-none">
-      <RouterLink to="/" class="hidden p-5 hover:bg-red-600 lg:block"> 🧮 Calculer </RouterLink>
+      <RouterLink to="/" class="block p-5 hover:bg-red-600 md:hidden lg:block">
+        🧮 Calculer
+      </RouterLink>
       <RouterLink to="/configure" class="block p-5 hover:bg-red-600"> ⚙️ Configurer </RouterLink>
       <RouterLink to="/how" class="block p-5 hover:bg-red-600"> 🔧 Comment ça marche ? </RouterLink>
       <RouterLink to="/about" class="block p-5 hover:bg-red-600"> ℹ️ A propos </RouterLink>
