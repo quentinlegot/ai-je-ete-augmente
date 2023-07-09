@@ -3,7 +3,8 @@ import * as fs from 'fs'
 import * as zlib from 'zlib'
 import * as readline from 'readline'
 import type { InflationRates } from './components/InflationRates'
-import { CountryCodes } from './components/CountryCodes'
+import type { countryCode } from './components/CountryCodes'
+import { countryCodes } from './components/CountryCodes'
 
 const eurostatInflationRateSourceUrl =
   'https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=data/prc_hicp_mmor.tsv.gz'
@@ -61,8 +62,8 @@ function convertTSVToJson(inputFilePath: string, outputDirectory: string): Promi
 
       const countryCode = columns[0]
         .substring(eurostatIndicatorForInflationRate.length)
-        .toLowerCase()
-      if (!CountryCodes.includes(countryCode)) {
+        .toLowerCase() as countryCode
+      if (!countryCodes.includes(countryCode)) {
         return
       }
 

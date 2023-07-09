@@ -11,17 +11,22 @@ import {
   AdjustedSalaryCreateFromPrevious
 } from '@/components/AdjustedSalary'
 import type { InflationRates } from '@/components/InflationRates'
-import inflationRatesData from '@/assets/inflation.fr.json'
 import AdjustedSalariesSummary from '@/components/AdjustedSalariesSummary.vue'
+import type { Configuration } from '@/components/SharedConfiguration'
+import { SharedConfiguration } from '@/components/SharedConfiguration'
 
 export default defineComponent({
   components: { AdjustedSalariesSummary, InflationChart, SalaryDisplay, SalaryNew },
   data() {
     return {
+      configuration: SharedConfiguration as Configuration,
       inflationRates: {} as InflationRates,
       salaries: [] as Salary[],
       missingInflationRates: [] as Array<string>
     }
+  },
+  async created() {
+    this.inflationRates = await import(`../assets/inflations/${this.configuration.country}.json`)
   },
   computed: {
     nextKey(): number {
@@ -59,7 +64,10 @@ export default defineComponent({
         let sMonth = ('' + month).padStart(2, '0')
         let sYear = '' + year
         let date = sYear + '-' + sMonth
-        if (!(sYear in this.inflationRates) || !(sMonth in this.inflationRates[sYear])) {
+        if (
+          !(this.configuration.country in this.inflationRates) ||
+          !(date in this.inflationRates[this.configuration.country])
+        ) {
           if (clonedSalaries.length === 0) {
             break
           }
@@ -67,8 +75,9 @@ export default defineComponent({
           this.missingInflationRates.push(date)
         }
         let inflationRate =
-          sYear in this.inflationRates && sMonth in this.inflationRates[sYear]
-            ? this.inflationRates[sYear][sMonth]
+          this.configuration.country in this.inflationRates &&
+          date in this.inflationRates[this.configuration.country]
+            ? this.inflationRates[this.configuration.country][date]
             : 0
         cumulatedInflationMultiplier *= 1 + inflationRate / 100
 
@@ -112,7 +121,6 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.inflationRates = inflationRatesData
     let retrievedSalaries = localStorage.getItem('salaries')
     if (retrievedSalaries) {
       this.salaries = JSON.parse(retrievedSalaries)

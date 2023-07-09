@@ -21,7 +21,7 @@
     "goal": {
       "p1": "This project was born out of the desire to determine the real raise %, in relation to the loss of salary due to inflation since the previous raise. ",
       "p2": "If you want to delve deeper into the subject of inflation, there are many more detailed and serious sources. ",
-      "p3": "<li><a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">🇫🇷 France's economic website</a></li><li><a href=\"https://ec.europa.eu/eurostat/databrowser/view/PRC_HICP_MANR__custom_3761882/bookmark/table?lang=en&bookmarkId=4ad27e6f-358a-4a3d-82a0-587d69a833eb\" target=\"_blank\" class=\"underline\">Eurostat</a></li>",
+      "p3": "<li><a href=\"https://ec.europa.eu/eurostat/web/main/home\" target=\"_blank\" class=\"underline\">Eurostat website 🇪🇺</a></li><li><a href=\"https://ec.europa.eu/eurostat/cache/metadata/en/prc_hicp_esms.htm\" target=\"_blank\" class=\"underline\">Eurostat explanation of HICP</a></li><li>(🇫🇷) <a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">France's economic website</a></li>",
       "title": "Goal"
     },
     "legal": {
@@ -37,6 +37,50 @@
   },
   "configure": {
     "autosave": "Parameters are saved automatically",
+    "country": {
+      "label": "Country selection for inflation data",
+      "options": {
+        "al": "🇦🇱 Albania",
+        "at": "🇦🇹 Austria",
+        "be": "🇧🇪 Belgium",
+        "bg": "🇧🇬 Bulgaria",
+        "ch": "🇨🇭 Switzerland",
+        "cy": "🇨🇾 Cyprus",
+        "cz": "🇨🇿 Czech Republic",
+        "de": "🇩🇪 Germany",
+        "dk": "🇩🇰 Denmark",
+        "ee": "🇪🇪 Estonia",
+        "el": "🇬🇷 Greece",
+        "es": "🇪🇸 Spain",
+        "eu": "🇪🇺 Europe",
+        "fi": "🇫🇮 Finland",
+        "fr": "🇫🇷 France",
+        "hr": "🇭🇷 Croatia",
+        "hu": "🇭🇺 Hungary",
+        "ie": "🇮🇪 Ireland",
+        "is": "🇮🇸 Iceland",
+        "it": "🇮🇹 Italy",
+        "lt": "🇱🇹 Lithuania",
+        "lu": "🇱🇺 Luxembourg",
+        "lv": "🇱🇻 Latvia",
+        "me": "🇲🇪 Montenegro",
+        "mk": "🇲🇰 North Macedonia",
+        "mt": "🇲🇹 Malta",
+        "nl": "🇳🇱 Netherlands-Bas",
+        "no": "🇳🇴 Norway",
+        "pl": "🇵🇱 Poland",
+        "pt": "🇵🇹 Portugal",
+        "ro": "🇷🇴 Romania",
+        "rs": "🇷🇸 Serbia",
+        "se": "🇸🇪 Sweden",
+        "si": "🇸🇮 Slovenia",
+        "sk": "🇸🇰 Slovakia",
+        "tr": "🇹🇷 Turkey",
+        "uk": "🇬🇧 United Kingdom",
+        "us": "🇺🇸 United States",
+        "xk": "🇽🇰 Kosovo"
+      }
+    },
     "currency": {
       "helper": "Only used for display",
       "label": "Currency"
@@ -61,10 +105,9 @@
       }
     },
     "language": {
-      "helper": "Inflation rates are only available for metropolitan France for now",
       "label": "UI language",
       "options": {
-        "en": "🇺🇸 English",
+        "en": "🇬🇧 English",
         "fr": "🇫🇷 Français"
       }
     },
@@ -72,7 +115,7 @@
   },
   "how": {
     "inflation": {
-      "p1": "Inflation rates are those published <a href=\"https://www.insee.fr/fr/statistiques?taille=100&debut=0&theme=30&conjoncture=43\" target=\"_blank\" class=\"underline\">for each months by l'insee 🇫🇷</a>. For now, it only works for France. ",
+      "p1": "Inflation rates used are thoses published by <a href=\"https://ec.europa.eu/eurostat/data/database?node_code=prc_hicp_mmor\" target=\"_blank\" class=\"underline\">the EU commission Eurostat 🇪🇺</a> for each month (harmonised index of consumer prices, monthly rate of change). ",
       "title": "Where do inflation rates come from?"
     },
     "operating": {
