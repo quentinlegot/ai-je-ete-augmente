@@ -70,19 +70,19 @@ export default defineComponent({
     },
     timeElapsed(): string {
       if (this.adjustedSalaries.length <= 18) {
-        return this.adjustedSalaries.length + ' mois'
+        return this.adjustedSalaries.length + this.$t('salary.summary.time.months')
       }
 
       const monthModulo = this.adjustedSalaries.length % 12
       const numberOfYears = this.adjustedSalaries.length / 12
 
       if (monthModulo === 0) {
-        return numberOfYears + ' ans'
+        return this.$t('salary.summary.time.years', { number: numberOfYears })
       }
 
-      return (
-        (monthModulo > 5 ? ' presque ' : ' un peu plus de ') + Math.round(numberOfYears) + ' ans'
-      )
+      return monthModulo > 5
+        ? this.$t('salary.summary.time.nearly', { number: Math.round(numberOfYears) })
+        : this.$t('salary.summary.time.more', { number: Math.round(numberOfYears) })
     }
   }
 })
@@ -90,56 +90,72 @@ export default defineComponent({
 
 <template>
   <div class="flex flex-col items-center p-5">
-    <p v-if="numberOfSalaryChanges > 1" class="inline-block p-5 text-lg">
-      De
-      <span class="font-semibold"
-        >{{ incomeReference.toPrecision(5) }}{{ configuration.currency }}</span
-      >
-      à <span class="line-through">{{ incomeFinal.toPrecision(5) }}</span>
-      <span class="font-semibold"
-        >{{ incomeFinalAdjusted.toPrecision(5) }}{{ configuration.currency }}</span
-      >
-      net/mois sur {{ adjustedSalaries.length }} mois.
-    </p>
-    <p v-if="numberOfSalaryChanges > 1" class="inline-block p-5 text-lg">
-      En {{ timeElapsed }}, le salaire à été modifié {{ numberOfSalaryChanges - 1 }} fois, pour une
-      {{ overallChange > 0 ? 'augmentation' : 'diminution ' }} totale annoncée de
-      <span class="text-red-500">
-        {{ (overallChange > 0 ? overallChange : overallChange * -1).toPrecision(3) }}%</span
-      >. Cela correspond en réalité à une
-      {{ overallChangeAdjusted > 0 ? 'augmentation' : 'diminution' }} de
-      <span class="font-bold text-red-500">
-        {{
-          (overallChangeAdjusted > 0
-            ? overallChangeAdjusted
-            : overallChangeAdjusted * -1
-          ).toPrecision(3)
-        }}%</span
-      >.
-    </p>
-    <p
-      v-else-if="numberOfSalaryChanges === 1 && adjustedSalaries.length > 1"
-      class="inline-block p-5 text-lg"
-    >
-      En {{ timeElapsed }}, votre salaire à {{ overallChangeAdjusted > 0 ? 'gagné' : 'perdu' }}
-      <span class="font-bold text-red-500">
-        {{
-          (overallChangeAdjusted > 0
-            ? overallChangeAdjusted
-            : overallChangeAdjusted * -1
-          ).toPrecision(3)
-        }}%</span
-      >
-      de sa valeur.
-      <span class="text-sm">
-        Ajoutez un second salaire pour voir la différence ajustée par l'inflation.
-      </span>
-    </p>
-    <p v-else-if="numberOfSalaryChanges === 0" class="inline-block p-5 text-sm">
-      Commencez par saisir un premier salaire pour voir son évolution au cours du temps.
-    </p>
+    <template v-if="numberOfSalaryChanges > 1">
+      <p
+        class="p-3 text-lg"
+        v-html="
+          $t('salary.summary.change.multi.overall', {
+            baseIncome: incomeReference.toPrecision(5),
+            currency: configuration.currency,
+            finalIncome: incomeFinal.toPrecision(5),
+            finalIncomeAdjusted: incomeFinalAdjusted.toPrecision(5),
+            period: adjustedSalaries.length
+          })
+        "
+      ></p>
+      <p class="p-3 text-lg">
+        <span
+          v-html="
+            $t(
+              'salary.summary.change.multi.announced',
+              {
+                change: overallChange.toPrecision(3),
+                numberOfChanges: numberOfSalaryChanges - 1,
+                period: timeElapsed
+              },
+              overallChange
+            )
+          "
+        ></span>
+        <span
+          v-html="
+            $t(
+              'salary.summary.change.multi.adjusted',
+              {
+                changeAdjusted: overallChangeAdjusted.toPrecision(3)
+              },
+              overallChangeAdjusted
+            )
+          "
+        ></span>
+      </p>
+    </template>
+    <template v-else-if="numberOfSalaryChanges === 1 && adjustedSalaries.length > 1">
+      <p
+        class="p-3 text-lg"
+        v-html="
+          $t(
+            'salary.summary.change.one',
+            {
+              changeAdjusted: (overallChangeAdjusted > 0
+                ? overallChangeAdjusted
+                : overallChangeAdjusted * -1
+              ).toPrecision(3),
+              period: timeElapsed
+            },
+            overallChangeAdjusted
+          )
+        "
+      ></p>
+      <p class="p-3 text-sm" v-html="$t('salary.summary.change.helper')"></p>
+    </template>
+    <template v-else-if="numberOfSalaryChanges === 0">
+      <p class="p-3 text-sm">
+        {{ $t('salary.summary.change.none') }}
+      </p>
+    </template>
     <p class="flex self-end p-5 text-xs underline">
-      <RouterLink to="/how">Comment ça marche ?</RouterLink>
+      <RouterLink to="/how">{{ $t('salary.summary.helper') }}</RouterLink>
     </p>
   </div>
 </template>

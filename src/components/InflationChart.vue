@@ -55,14 +55,14 @@ export default defineComponent({
         labels: labels,
         datasets: [
           {
-            label: 'Salaires annoncés',
+            label: this.$t('salary.chart.datasets.1.label'),
             data: incomes,
             backgroundColor: 'rgba(68,68,239,0.2)',
             borderColor: 'rgb(68,68,239)',
             pointStyle: false
           },
           {
-            label: "Salaires réels ajustés suivant l'inflation",
+            label: this.$t('salary.chart.datasets.2.label'),
             data: incomesAdjusted,
             cubicInterpolationMode: 'monotone',
             fill: '-1',
@@ -89,7 +89,7 @@ export default defineComponent({
           x: {
             title: {
               display: true,
-              text: 'Mois'
+              text: this.$t('salary.chart.x.title')
             },
             ticks: {
               callback: function (val: number, index: number) {
@@ -100,7 +100,7 @@ export default defineComponent({
           y: {
             title: {
               display: true,
-              text: "Pouvoir d'achat en " + this.configuration.currency
+              text: this.$t('salary.chart.y.title', { currency: this.configuration.currency })
             },
             position: 'right'
           }

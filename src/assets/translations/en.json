@@ -1,0 +1,191 @@
+{
+  "about": {
+    "contribute": {
+      "p1": {
+        "1": "If you want to contribute, ",
+        "2": "code source is available here",
+        "3": ". "
+      },
+      "title": "Contribute"
+    },
+    "discuss": {
+      "p1": {
+        "1": "Discuss the project ",
+        "2": "on mastodon 🦣",
+        "3": " or ",
+        "4": " on twitter 🐦",
+        "5": ". "
+      },
+      "title": "Discuss"
+    },
+    "goal": {
+      "p1": "This project was born out of the desire to determine the real raise %, in relation to the loss of salary due to inflation since the previous raise. ",
+      "p2": "If you want to delve deeper into the subject of inflation, there are many more detailed and serious sources. ",
+      "p3": "<li><a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">🇫🇷 France's economic website</a></li><li><a href=\"https://ec.europa.eu/eurostat/databrowser/view/PRC_HICP_MANR__custom_3761882/bookmark/table?lang=en&bookmarkId=4ad27e6f-358a-4a3d-82a0-587d69a833eb\" target=\"_blank\" class=\"underline\">Eurostat</a></li>",
+      "title": "Goal"
+    },
+    "legal": {
+      "p1": "No data is collected at any point. ",
+      "p2": "This website is hosted by <a href=\"https://www.ovhcloud.com/fr/terms-and-conditions/\" target=\"_blank\" class=\"underline\">OVH, 2 rue Kellermann - 59100 Roubaix - France</a>. ",
+      "title": "Legal Notices"
+    },
+    "why": {
+      "p1": "In the course of 2022, inflation rates soared in France ( and in Europe overall ). Many wondered whether the annual \"raises\" would, at least, cover the rise in prices. ",
+      "p2": "Turns out the question was relevant for all previous years, but we don't often think about it. ",
+      "title": "About"
+    }
+  },
+  "configure": {
+    "autosave": "Parameters are saved automatically",
+    "currency": {
+      "helper": "Only used for display",
+      "label": "Currency"
+    },
+    "data": {
+      "reset": "⚠️ Reset saved data and configuration"
+    },
+    "header": "Configure the application",
+    "incomeMode": {
+      "grossAnnual": {
+        "imposition": {
+          "label": "Imposition (%) ",
+          "helper": "Percent withdrawn from the gross income to get the net salary"
+        },
+        "helper": "Imposition is withdrawn from the gross income, which is then evaluated monthly against the inflation rate",
+        "label": "Annuel gross salary"
+      },
+      "label": "Calculation mode according the type of salary",
+      "netMonthly": {
+        "helper": "Monthly income is directly evaluated against the inflation rate",
+        "label": "Monthly net salary"
+      }
+    },
+    "language": {
+      "helper": "Inflation rates are only available for metropolitan France for now",
+      "label": "UI language",
+      "options": {
+        "en": "🇺🇸 English",
+        "fr": "🇫🇷 Français"
+      }
+    },
+    "saved": "Parameters have been saved | Parameters have been saved ({count})"
+  },
+  "how": {
+    "inflation": {
+      "p1": "Inflation rates are those published <a href=\"https://www.insee.fr/fr/statistiques?taille=100&debut=0&theme=30&conjoncture=43\" target=\"_blank\" class=\"underline\">for each months by l'insee 🇫🇷</a>. For now, it only works for France. ",
+      "title": "Where do inflation rates come from?"
+    },
+    "operating": {
+      "p1": "The oldest salary is your reference income. This salary allows you to by a <i>pile of stuff</i>. ",
+      "p2": "Over time, because of the inflation going on, the same <i>pile of stuff</i> is going to be increasingly expensive. As a result, you salary will allow you to buy only a smaller portion of that same <i>pile of stuff</i>. ",
+      "p3": "Following raises are then recalculated to reflect how they allow you to buy the same <i>pile of stuff</i>. ",
+      "p4": "The change in the ability to buy the <i>pile of stuff</i> is represented on the chart by the gap between the announced salary and the adjusted salary. ",
+      "title": "How does it work?"
+    },
+    "usage": {
+      "p1": {
+        "1": "Over ",
+        "2": "the main page",
+        "3": ", fill in the successive salary changes over time. "
+      },
+      "p2": "You will be able to see the raise % announced, and below, the real change adjusted with the inflation. ",
+      "p3": {
+        "1": "Over ",
+        "2": "the configuration page",
+        "3": ", you will be able to change the income calculation mode between annual gross income with imposition, and net monthly. "
+      },
+      "title": "How to use this tool?"
+    }
+  },
+  "menu": {
+    "about": "ℹ️ About",
+    "configure": "⚙️ Configure",
+    "home": "🧮 Calculation",
+    "how": "🔧 How does it work?",
+    "title": "💸 Did I get a raise?"
+  },
+  "salary": {
+    "chart": {
+      "datasets": {
+        "1": {
+          "label": "Announced salaries"
+        },
+        "2": {
+          "label": "Adjusted salaries following inflation"
+        }
+      },
+      "x": {
+        "title": "Months"
+      },
+      "y": {
+        "title": "Buying power in {currency}"
+      }
+    },
+    "history": {
+      "change": {
+        "alternative": {
+          "details": "{income} * (1 - imposition) / 12",
+          "display": "That's {value}{currency}",
+          "imposition": {
+            "1": "with an imposition ",
+            "2": "configured",
+            "3": " at {imposition}%"
+          }
+        },
+        "base": "Reference salary",
+        "decrease": "reduction in salary:",
+        "decreaseAdjusted": "real change: ",
+        "increase": "increase in salary: ",
+        "increaseAdjusted": "real change: ",
+        "new": "New salary",
+        "remove": "Loss of salary"
+      },
+      "gross": "gross/year",
+      "indicator": {
+        "base": "📅",
+        "down": "📉",
+        "up": "📈"
+      },
+      "net": "net/month",
+      "remove": "Remove",
+      "title": "Salary history ({number})"
+    },
+    "new": {
+      "add": "Add",
+      "date": {
+        "label": "Date of the change in salary",
+        "months": "Month",
+        "year": "Year"
+      },
+      "error": "⚠️ salary for this date {date} already filled in, remove the existing first",
+      "salary": {
+        "gross": "annual gross in {currency}",
+        "label": "Amount of the new salary",
+        "months": "Month",
+        "net": "net monthly in {currency}",
+        "year": "Year"
+      },
+      "title": "Add a salary"
+    },
+    "summary": {
+      "change": {
+        "multi": {
+          "adjusted": "Including inflation, income didn't change. |  In reality, income lost <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> of its value. |  In reality, income increased by <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> of its value. ",
+          "announced": "Over {period}, your salary has changed {numberOfChanges} times, without change in valuation. | Over {period}, your salary changed {numberOfChanges} times, with a announced loss of <span class=\"text-red-500\">{change}%</span>. | Over {period}, your salary changed {numberOfChanges} times, for a announced raise of <span class=\"text-red-500\">{change}%</span>. ",
+          "overall": "From <span class=\"font-semibold\">{baseIncome}{currency}</span> to <span class=\"line-through\">{finalIncome}</span> <span class=\"font-semibold\">{finalIncomeAdjusted}{currency}</span> net/month over {period} months. "
+        },
+        "none": "To start, add a salary to see it's evolution over time. ",
+        "one": "In {period}, you salary valuation did'nt change. | In {period}, your salary lost <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> of its value. | In {period}, you salary valuation increased by <span class=\"font-bold text-red-500\">{changeAdjusted}%</span>. ",
+        "helper": "Add another salary to see the gap between them adjusted with the inflation. "
+      },
+      "helper": "How does it work?",
+      "time": {
+        "months": "{number} months",
+        "more": " more than {number} years",
+        "nearly": " nearly {number} years",
+        "years": "{number} years"
+      }
+    },
+    "warning": "Warning, inflation rate for {dates} is unknown! | Warning, {number} inflation rates are unknown for the follwing periods: {dates}. "
+  }
+}

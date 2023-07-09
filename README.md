@@ -4,8 +4,10 @@ A small single page app to show the difference between your usual salary raises,
 
 ## Planned feature
 
-* [ ] English translation
+* [x] English translation
 * [ ] Use data from eurostats to enable other country than france
+* [ ] Add new Raise calculation mode with % increae instead of flat value
+* [ ] Add indice point calculation mode
 
 ## How to contribute?
 
