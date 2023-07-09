@@ -17,7 +17,9 @@ export default {
       this.configuration.currency = parsedConfiguration.currency
       this.configuration.imposition = parsedConfiguration.imposition
       this.configuration.incomeMode = parsedConfiguration.incomeMode
+      this.configuration.locale = parsedConfiguration.locale
     }
+    this.$i18n.locale = this.configuration.locale
   },
   watch: {
     configuration: {
@@ -39,16 +41,20 @@ export default {
         to="/"
         class="block border-b border-b-white p-5 font-medium uppercase md:flex-none md:border-none"
       >
-        💸 Ai-je été augmenté ?
+        {{ $t('menu.title') }}
       </RouterLink>
     </h1>
     <nav class="divide-y divide-dashed md:flex md:grow md:flex-row md:justify-end md:divide-none">
       <RouterLink to="/" class="block p-5 hover:bg-red-600 md:hidden lg:block">
-        🧮 Calculer
+        {{ $t('menu.home') }}
       </RouterLink>
-      <RouterLink to="/configure" class="block p-5 hover:bg-red-600"> ⚙️ Configurer </RouterLink>
-      <RouterLink to="/how" class="block p-5 hover:bg-red-600"> 🔧 Comment ça marche ? </RouterLink>
-      <RouterLink to="/about" class="block p-5 hover:bg-red-600"> ℹ️ A propos </RouterLink>
+      <RouterLink to="/configure" class="block p-5 hover:bg-red-600">
+        {{ $t('menu.configure') }}
+      </RouterLink>
+      <RouterLink to="/how" class="block p-5 hover:bg-red-600"> {{ $t('menu.how') }} </RouterLink>
+      <RouterLink to="/about" class="block p-5 hover:bg-red-600">
+        {{ $t('menu.about') }}
+      </RouterLink>
     </nav>
   </header>
 

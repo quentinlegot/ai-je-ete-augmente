@@ -34,22 +34,15 @@ export default defineComponent({
     salaryRecurrence(): string {
       switch (this.configuration.incomeMode) {
         case 'gross-annual':
-          return 'brut/an'
+          return this.$t('salary.history.gross')
         case 'net-monthly':
-          return 'net/mois'
+          return this.$t('salary.history.net')
         default:
           return ''
       }
     },
     effectiveSalaryRecurrence(): string {
-      switch (this.configuration.incomeMode) {
-        case 'gross-annual':
-          return 'net/mois'
-        case 'net-monthly':
-          return 'net/mois'
-        default:
-          return ''
-      }
+      return this.$t('salary.history.net')
     }
   },
   methods: {
@@ -67,9 +60,9 @@ export default defineComponent({
     <div
       class="-ml-[16px] h-[30px] w-[30px] shrink-0 rounded-full border-2 border-red-500 bg-white text-center align-middle group-hover/salary:bg-red-500"
     >
-      <span v-if="salary.state === 'up'"> 📈 </span>
-      <span v-else-if="salary.state === 'down'"> 📉 </span>
-      <span v-else> 📅 </span>
+      <span v-if="salary.state === 'up'">{{ $t('salary.history.indicator.up') }}</span>
+      <span v-else-if="salary.state === 'down'">{{ $t('salary.history.indicator.down') }}</span>
+      <span v-else>{{ $t('salary.history.indicator.base') }}</span>
     </div>
     <div class="relative mb-5 block max-w-md grow p-2">
       <p class="text-sm text-neutral-500">
@@ -80,53 +73,70 @@ export default defineComponent({
         <small class="text-sm text-neutral-800"> {{ salaryRecurrence }} </small>
       </h3>
       <p v-if="salary.salaryChangeAdjusted === 0" class="text-sm text-neutral-500">
-        Salaire de référence
+        {{ $t('salary.history.change.base') }}
       </p>
       <p v-else-if="salary.salaryChange === Infinity" class="text-sm text-neutral-500">
-        Nouveau salaire
+        {{ $t('salary.history.change.base') }}
       </p>
       <template v-else-if="salary.salaryChange > 0">
         <p class="text-sm text-neutral-500">
-          augmentation annoncé :
+          {{ $t('salary.history.change.increase') }}
           <span class="text-red-500">{{ salaryChange }}</span>
         </p>
         <p class="text-sm text-neutral-500">
-          changement réel :
+          {{ $t('salary.history.change.increaseAdjusted') }}
           <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
         </p>
       </template>
       <template v-else-if="salary.salaryChange < 0 && salary.income > 0">
         <p class="text-sm text-neutral-500">
-          perte de salaire :
+          {{ $t('salary.history.change.decrease') }}
           <span class="text-red-500">{{ salaryChange }}</span>
         </p>
         <p class="text-sm text-neutral-500">
-          changement réel :
+          {{ $t('salary.history.change.decreaseAdjusted') }}
           <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
         </p>
       </template>
-      <p v-else-if="salary.income === 0" class="text-sm text-neutral-500">Perte de revenus</p>
+      <p v-else-if="salary.income === 0" class="text-sm text-neutral-500">
+        {{ $t('salary.history.change.remove') }}
+      </p>
       <button
         v-on:click="removeSalary(salary)"
         class="rounded border border-yellow-100 p-1 text-sm text-slate-300 hover:bg-yellow-300 hover:text-white group-hover/salary:border-yellow-300 group-hover/salary:text-black"
       >
-        Supprimer
+        {{ $t('salary.history.remove') }}
       </button>
       <div
         v-if="configuration.incomeMode === 'gross-annual'"
         class="md:auto hidden whitespace-nowrap md:absolute md:left-full md:top-5 md:z-10 md:-ml-5 md:rounded-r-3xl md:border md:bg-white md:p-3 md:shadow-md md:shadow-red-500 md:group-hover/salary:block"
       >
         <h4 class="m-1 text-lg font-medium">
-          Soit {{ salary.income.toPrecision(5) }}{{ configuration.currency }}
+          {{
+            $t('salary.history.change.alternative.display', {
+              currency: configuration.currency,
+              value: salary.income.toPrecision(5)
+            })
+          }}
           <small class="text-sm text-neutral-800"> {{ effectiveSalaryRecurrence }} </small>
         </h4>
         <p class="text-xs text-slate-500">
-          {{ salary.originalSalary.income }} * (1 - imposition / 100) / 12
+          {{
+            $t('salary.history.change.alternative.details', {
+              income: salary.originalSalary.income
+            })
+          }}
         </p>
         <p class="text-xs text-slate-500">
-          avec une imposition
-          <RouterLink to="/configure" class="underline">configurée</RouterLink> à
-          {{ configuration.imposition }}%
+          {{ $t('salary.history.change.alternative.imposition.1')
+          }}<RouterLink to="/configure" class="underline">{{
+            $t('salary.history.change.alternative.imposition.2')
+          }}</RouterLink
+          >{{
+            $t('salary.history.change.alternative.imposition.3', {
+              imposition: configuration.imposition
+            })
+          }}
         </p>
       </div>
     </div>

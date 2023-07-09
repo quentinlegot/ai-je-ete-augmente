@@ -55,7 +55,14 @@ export default defineComponent({
       let month = this.date.getMonth()
 
       for (let m = 0; m < month; m++) {
-        availableMonths.push((m + 1).toString().padStart(2, '0'))
+        let sMonth = (m + 1).toString().padStart(2, '0')
+        if (
+          this.salaries.filter(
+            (salary: Salary): boolean => salary.date === this.newDateYear + '-' + sMonth
+          ).length === 0
+        ) {
+          availableMonths.push(sMonth)
+        }
       }
 
       return availableMonths
@@ -63,9 +70,9 @@ export default defineComponent({
     placeholderSalary(): string {
       switch (this.configuration.incomeMode) {
         case 'gross-annual':
-          return 'annuel brut en ' + this.configuration.currency
+          return this.$t('salary.new.salary.gross', { currency: this.configuration.currency })
         case 'net-monthly':
-          return 'mensuel net en ' + this.configuration.currency
+          return this.$t('salary.new.salary.net', { currency: this.configuration.currency })
         default:
           return ''
       }
@@ -78,8 +85,7 @@ export default defineComponent({
       }
       const newDate = this.newDateYear + '-' + this.newDateMonth
       if (this.salaries.filter((salary: Salary): boolean => salary.date === newDate).length > 0) {
-        this.errorMessage =
-          'salaire déjà renseigné sur le mois ' + newDate + ", supprimez le d'abord"
+        this.errorMessage = this.$t('salary.new.error', { date: newDate })
         return
       }
       this.$emit('addSalary', {
@@ -115,14 +121,14 @@ export default defineComponent({
     v-if="errorMessage !== ''"
     class="mt-3 rounded border border-orange-500 p-2 text-sm text-orange-500"
   >
-    ⚠️ {{ errorMessage }}
+    {{ errorMessage }}
   </p>
-  <h2 class="my-5 text-lg text-slate-800">Ajouter un salaire</h2>
+  <h2 class="my-5 text-lg text-slate-800">{{ $t('salary.new.title') }}</h2>
   <form v-on:submit.prevent="addSalary()" class="relative min-w-0 text-xs">
-    <label for="newDateYear" class="mt-3 block"> Date du changement de salaire </label>
+    <label for="newDateYear" class="mt-3 block"> {{ $t('salary.new.date.label') }}</label>
     <div>
       <select required v-model="newDateYear" id="newDateYear" class="inline-block w-1/2">
-        <option value="" selected disabled>Année</option>
+        <option value="" selected disabled>{{ $t('salary.new.date.year') }}</option>
         <option
           v-for="(availableYear, index) in availableYears"
           v-bind:key="index"
@@ -132,7 +138,7 @@ export default defineComponent({
         </option>
       </select>
       <select required v-model="newDateMonth" id="newDateMonth" class="inline-block w-1/2">
-        <option value="" selected disabled>Mois</option>
+        <option value="" selected disabled>{{ $t('salary.new.date.months') }}</option>
         <option
           v-for="(availableMonth, index) in availableMonths"
           v-bind:key="index"
@@ -142,7 +148,7 @@ export default defineComponent({
         </option>
       </select>
     </div>
-    <label for="newDate" class="mt-3 block"> Montant du nouveau salaire </label>
+    <label for="newDate" class="mt-3 block">{{ $t('salary.new.salary.label') }} </label>
     <input
       type="number"
       min="0"
@@ -156,7 +162,7 @@ export default defineComponent({
       type="submit"
       class="mt-3 rounded border border-green-800 p-2 hover:bg-green-800 hover:text-white"
     >
-      Ajouter
+      {{ $t('salary.new.add') }}
     </button>
   </form>
 </template>

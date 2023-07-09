@@ -136,7 +136,9 @@ export default defineComponent({
   >
     <section class="inline-block shrink-0">
       <div class="contents" :class="salaries.length == 0 ? 'hidden' : ''">
-        <h2 class="my-5 text-lg text-slate-800">Historique des salaires ({{ salaries.length }})</h2>
+        <h2 class="my-5 text-lg text-slate-800">
+          {{ $t('salary.history.title', { number: salaries.length }) }}
+        </h2>
         <ol class="mb-5 border-l-2 border-red-500">
           <salary-display
             v-for="(adjustedSalary, index) in adjustedSalaries"
@@ -151,13 +153,17 @@ export default defineComponent({
     <section class="grow">
       <div class="sticky top-0">
         <inflation-chart :adjusted-salaries="adjustedSalaries" />
-        <p v-if="missingInflationRates.length > 1" class="m-5 p-2 text-sm italic">
-          Attention, {{ missingInflationRates.length }} taux d'inflation sont inconnues. Il s'agit
-          des périodes suivantes : {{ missingInflationRates.join(', ') }}
-        </p>
-        <p v-else-if="missingInflationRates.length > 0" class="m-5 p-2 text-sm italic">
-          Attention, le taux d'inflation pour la période du
-          {{ missingInflationRates.join(', ') }} n'est pas connu
+        <p v-if="missingInflationRates.length > 0" class="m-5 p-2 text-sm italic">
+          {{
+            $t(
+              'salary.warning',
+              {
+                dates: missingInflationRates.join(', '),
+                number: missingInflationRates.length
+              },
+              missingInflationRates.length
+            )
+          }}
         </p>
         <adjusted-salaries-summary :adjusted-salaries="adjustedSalaries" />
       </div>

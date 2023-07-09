@@ -1,0 +1,191 @@
+{
+  "about": {
+    "contribute": {
+      "p1": {
+        "1": "Si vous souhaitez participer, ",
+        "2": "les sources sont disponibles ici",
+        "3": ". "
+      },
+      "title": "Contribuer"
+    },
+    "discuss": {
+      "p1": {
+        "1": "Pour discuter du projet, rendez-vous ",
+        "2": "sur mastodon 🦣",
+        "3": " ou bien ",
+        "4": " sur twitter 🐦",
+        "5": ". "
+      },
+      "title": "Discuter"
+    },
+    "goal": {
+      "p1": "Ce projet est né de la volonté de déterminer le % d'augmentation réelle, par rapport à la perte de salaire suite à l'inflation, depuis la précédente augmentation. ",
+      "p2": "Si vous souhaitez aller plus loin sur le sujet de l'inflation, il existe de multiples sources bien plus fournies et sérieuses. ",
+      "p3": "<li><a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">Le site du gouvernement</a></li><li><a href=\"https://www.insee.fr/fr/statistiques/4268033\" target=\"_blank\" class=\"underline\">L'insee</a></li><li><a href=\"https://france-inflation.com\" target=\"_blank\" class=\"underline\">https://france-inflation.com</a></li>",
+      "title": "Objectif"
+    },
+    "legal": {
+      "p1": "Aucune donnée n'est collectée. ",
+      "p2": "Ce site est hébergé par <a href=\"https://www.ovhcloud.com/fr/terms-and-conditions/\" target=\"_blank\" class=\"underline\">OVH, 2 rue Kellermann - 59100 Roubaix - France</a>. ",
+      "title": "Mentions Légales"
+    },
+    "why": {
+      "p1": "Au cours de l'année 2022, on a pu voir les taux d'inflation s'envoler en france. La question s'est posée pour beaucoup de savoir si les \"augmentations\" annuelles allaient au moins couvrir la hausse des prix. ",
+      "p2": "L'interrogation s'est aussi faites pour les augmentations des années précédentes. A priori, on ne pense pas à suivre l'inflation régulièrement. ",
+      "title": "A propos"
+    }
+  },
+  "configure": {
+    "autosave": "Les paramètres sont sauvegardés automatiquement",
+    "currency": {
+      "helper": "Ne sert que pour l'affichage",
+      "label": "Devise"
+    },
+    "data": {
+      "reset": "⚠️ Reinitialiser les données et la configuration"
+    },
+    "header": "Configurer l'application",
+    "incomeMode": {
+      "grossAnnual": {
+        "imposition": {
+          "label": "Imposition (%) ",
+          "helper": "Pourcentage à retirer du salaire brut pour obtenir le salaire net"
+        },
+        "helper": "Une portion d'imposition est retirée des revenus annuels bruts qui sont ensuite évalués par mois en fonction de l'inflation",
+        "label": "Salaire annuel brut"
+      },
+      "label": "Mode de calculs en fonction du type de salaire",
+      "netMonthly": {
+        "helper": "Les revenus mensuels sont directement évalués en fonction de l'inflation",
+        "label": "Salaire mensuel net"
+      }
+    },
+    "language": {
+      "helper": "Les taux d'inflation sont uniquement disponible pour la france métropolitaine pour l'instant",
+      "label": "Langue de l'interface",
+      "options": {
+        "en": "🇺🇸 English",
+        "fr": "🇫🇷 Français"
+      }
+    },
+    "saved": "Les paramètres ont été sauvegardé | Les paramètres ont été sauvegardé ({count})"
+  },
+  "how": {
+    "inflation": {
+      "p1": "Les taux d'inflations sont ceux publiés <a href=\"https://www.insee.fr/fr/statistiques?taille=100&debut=0&theme=30&conjoncture=43\" target=\"_blank\" class=\"underline\">pour chaque mois par l'insee</a>. ",
+      "title": "D'où viennent les taux d'inflation ?"
+    },
+    "operating": {
+      "p1": "Le salaire le plus ancien sert de revenu de référence. Ce salaire vous permet d'acheter un <i>tas de X trucs</i>. ",
+      "p2": "Au fur et à mesure, du fait de l'inflation, ce <i>tas de X trucs</i> va couter de plus en plus cher. En conséquence, votre salaire vous permettra de ne vous payer plus qu'une portion de plus en plus réduite de ce <i>tas de X trucs</i>. ",
+      "p3": "Les augmentations suivantes sont ainsi recalculées par rapport à la capacité qu'elles vous offrent de vous offrir ce <i>tas de X trucs</i>. ",
+      "p4": "Le changement dans la capacité à acheter le <i>tas de X trucs</i> est matérialisé sur le graphique par l'écart entre le salaire annoncé et celui ajusté. ",
+      "title": "Comment ça fonctionne ?"
+    },
+    "usage": {
+      "p1": {
+        "1": "Sur ",
+        "2": "la page principale",
+        "3": ", ajoutez les changements de salaires successifs au mois auquels ils sont survenus. "
+      },
+      "p2": "Vous pourrez voir le % d'augmentation annoncé, et en dessous, celui ajusté par rapport à l'inflation. ",
+      "p3": {
+        "1": "Sur ",
+        "2": "la page de configuration",
+        "3": ", vous pourrez changer le mode de saisie du salaire et la méthode de calcul en alternant entre salaire annuel brut prélevé d'une imposition, ou salaire mensuel net. "
+      },
+      "title": "Comment utiliser l'outil ?"
+    }
+  },
+  "menu": {
+    "about": "ℹ️ A propos",
+    "configure": "⚙️ Configurer",
+    "home": "🧮 Calculer",
+    "how": "🔧 Comment ça marche ?",
+    "title": "💸 Ai-je été augmenté ?"
+  },
+  "salary": {
+    "chart": {
+      "datasets": {
+        "1": {
+          "label": "Salaires annoncés"
+        },
+        "2": {
+          "label": "Salaires réels ajustés suivant l'inflation"
+        }
+      },
+      "x": {
+        "title": "Mois"
+      },
+      "y": {
+        "title": "Pouvoir d'achat en {currency}"
+      }
+    },
+    "history": {
+      "change": {
+        "alternative": {
+          "details": "{income} * (1 - imposition) / 12",
+          "display": "Soit {value}{currency}",
+          "imposition": {
+            "1": "avec une imposition ",
+            "2": "configurée",
+            "3": " à {imposition}%"
+          }
+        },
+        "base": "Salaire de référence",
+        "decrease": "perte de salaire :",
+        "decreaseAdjusted": "changement réel : ",
+        "increase": "augmentation annoncé : ",
+        "increaseAdjusted": "changement réel : ",
+        "new": "Nouveau salaire",
+        "remove": "Perte de revenus"
+      },
+      "gross": "brut/an",
+      "indicator": {
+        "base": "📅",
+        "down": "📉",
+        "up": "📈"
+      },
+      "net": "net/mois",
+      "remove": "Supprimer",
+      "title": "Historique des salaires ({number})"
+    },
+    "new": {
+      "add": "Ajouter",
+      "date": {
+        "label": "Date du changement de salaire",
+        "months": "Mois",
+        "year": "Année"
+      },
+      "error": "⚠️ salaire déjà renseigné sur le mois {date}, supprimez le d'abord",
+      "salary": {
+        "gross": "annuel brut en {currency}",
+        "label": "Montant du nouveau salaire",
+        "months": "Mois",
+        "net": "mensuel net en {currency}",
+        "year": "Année"
+      },
+      "title": "Ajouter un salaire"
+    },
+    "summary": {
+      "change": {
+        "multi": {
+          "adjusted": "Cela n'a pas induit de changement de revenus. |  Cela correspond en réalité à une diminution de <span class=\"font-bold text-red-500\">{changeAdjusted}%</span>. |  Cela correspond en réalité à une augmentation de <span class=\"font-bold text-red-500\">{changeAdjusted}%</span>. ",
+          "announced": "En {period}, le salaire à été modifié {numberOfChanges} fois, sans changement de valeur. |En {period}, le salaire à été modifié {numberOfChanges} fois, pour une diminution totale annoncée de <span class=\"text-red-500\">{change}%</span>. | En {period}, le salaire à été modifié {numberOfChanges} fois, pour une augmentation totale annoncée de <span class=\"text-red-500\">{change}%</span>. ",
+          "overall": "De <span class=\"font-semibold\">{baseIncome}{currency}</span> à <span class=\"line-through\">{finalIncome}</span> <span class=\"font-semibold\">{finalIncomeAdjusted}{currency}</span> net/mois sur {period} mois. "
+        },
+        "none": "Commencez par saisir un premier salaire pour voir son évolution au cours du temps. ",
+        "one": "En {period}, votre salaire n'a pas changé de valeur. | En {period}, votre salaire a perdu <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. | En {period}, votre salaire a gagné <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. ",
+        "helper": "Ajoutez un second salaire pour voir la différence ajustée par l'inflation. "
+      },
+      "helper": "Comment ça marche ?",
+      "time": {
+        "months": "{number} mois",
+        "more": " un peu plus de {number} ans",
+        "nearly": " presque {number} ans",
+        "years": "{number} ans"
+      }
+    },
+    "warning": "Attention, le taux d'inflation pour la période du {dates} n'est pas connu ! | Attention, {number} taux d'inflation sont inconnues. Il s'agit des périodes suivantes : {dates}. "
+  }
+}
