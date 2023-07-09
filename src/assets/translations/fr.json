@@ -21,7 +21,7 @@
     "goal": {
       "p1": "Ce projet est né de la volonté de déterminer le % d'augmentation réelle, par rapport à la perte de salaire suite à l'inflation, depuis la précédente augmentation. ",
       "p2": "Si vous souhaitez aller plus loin sur le sujet de l'inflation, il existe de multiples sources bien plus fournies et sérieuses. ",
-      "p3": "<li><a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">Le site du gouvernement</a></li><li><a href=\"https://www.insee.fr/fr/statistiques/4268033\" target=\"_blank\" class=\"underline\">L'insee</a></li><li><a href=\"https://france-inflation.com\" target=\"_blank\" class=\"underline\">https://france-inflation.com</a></li>",
+      "p3": "<li><a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">Le site du gouvernement</a></li><li><a href=\"https://www.insee.fr/fr/statistiques/4268033\" target=\"_blank\" class=\"underline\">L'insee</a></li><li><a href=\"https://ec.europa.eu/eurostat/web/main/home\" target=\"_blank\" class=\"underline\">Eurostat 🇪🇺</a></li><li>(🇬🇧) <a href=\"https://ec.europa.eu/eurostat/cache/metadata/en/prc_hicp_esms.htm\" target=\"_blank\" class=\"underline\">Explications d'Eurostat sur l'HICP</a></li><li><a href=\"https://france-inflation.com\" target=\"_blank\" class=\"underline\">https://france-inflation.com</a></li>",
       "title": "Objectif"
     },
     "legal": {
@@ -37,6 +37,50 @@
   },
   "configure": {
     "autosave": "Les paramètres sont sauvegardés automatiquement",
+    "country": {
+      "label": "Choix du pays pour les données d'inflation",
+      "options": {
+        "al": "🇦🇱 Albanie",
+        "at": "🇦🇹 Autriche",
+        "be": "🇧🇪 Belgique",
+        "bg": "🇧🇬 Bulgarie",
+        "ch": "🇨🇭 Suisse",
+        "cy": "🇨🇾 Chypre",
+        "cz": "🇨🇿 République tchèque",
+        "de": "🇩🇪 Allemagne",
+        "dk": "🇩🇰 Danemark",
+        "ee": "🇪🇪 Estonie",
+        "el": "🇬🇷 Grèce",
+        "es": "🇪🇸 Espagne",
+        "eu": "🇪🇺 Europe",
+        "fi": "🇫🇮 Finlande",
+        "fr": "🇫🇷 France",
+        "hr": "🇭🇷 Croatie",
+        "hu": "🇭🇺 Hongrie",
+        "ie": "🇮🇪 Irlande",
+        "is": "🇮🇸 Islande",
+        "it": "🇮🇹 Italie",
+        "lt": "🇱🇹 Lituanie",
+        "lu": "🇱🇺 Luxembourg",
+        "lv": "🇱🇻 Lettonie",
+        "me": "🇲🇪 Monténégro",
+        "mk": "🇲🇰 Macédoine du Nord",
+        "mt": "🇲🇹 Malte",
+        "nl": "🇳🇱 Pays-Bas",
+        "no": "🇳🇴 Norvège",
+        "pl": "🇵🇱 Pologne",
+        "pt": "🇵🇹 Portugal",
+        "ro": "🇷🇴 Roumanie",
+        "rs": "🇷🇸 Serbie",
+        "se": "🇸🇪 Suède",
+        "si": "🇸🇮 Slovénie",
+        "sk": "🇸🇰 Slovaquie",
+        "tr": "🇹🇷 Turquie",
+        "uk": "🇬🇧 Royaume-Uni",
+        "us": "🇺🇸 États-Unis",
+        "xk": "🇽🇰 Kosovo"
+      }
+    },
     "currency": {
       "helper": "Ne sert que pour l'affichage",
       "label": "Devise"
@@ -61,10 +105,9 @@
       }
     },
     "language": {
-      "helper": "Les taux d'inflation sont uniquement disponible pour la france métropolitaine pour l'instant",
       "label": "Langue de l'interface",
       "options": {
-        "en": "🇺🇸 English",
+        "en": "🇬🇧 English",
         "fr": "🇫🇷 Français"
       }
     },
@@ -72,7 +115,7 @@
   },
   "how": {
     "inflation": {
-      "p1": "Les taux d'inflations sont ceux publiés <a href=\"https://www.insee.fr/fr/statistiques?taille=100&debut=0&theme=30&conjoncture=43\" target=\"_blank\" class=\"underline\">pour chaque mois par l'insee</a>. ",
+      "p1": "Les taux d'inflations sont ceux publiés par <a href=\"https://ec.europa.eu/eurostat/data/database?node_code=prc_hicp_mmor\" target=\"_blank\" class=\"underline\">la commission européenne Eurostat 🇪🇺</a> pour chaque mois (harmonised index of consumer prices, monthly rate of change). ",
       "title": "D'où viennent les taux d'inflation ?"
     },
     "operating": {

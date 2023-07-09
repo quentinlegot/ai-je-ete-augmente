@@ -1,7 +1,7 @@
 <script lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import type { Configuration } from '@/components/SharedConfiguration'
-import { SharedConfiguration } from '@/components/SharedConfiguration'
+import { DefaultConfiguration, SharedConfiguration } from '@/components/SharedConfiguration'
 
 export default {
   components: { RouterLink, RouterView },
@@ -14,10 +14,13 @@ export default {
     const retrievedConfiguration = localStorage.getItem('configuration')
     if (retrievedConfiguration) {
       const parsedConfiguration = JSON.parse(retrievedConfiguration)
-      this.configuration.currency = parsedConfiguration.currency
-      this.configuration.imposition = parsedConfiguration.imposition
-      this.configuration.incomeMode = parsedConfiguration.incomeMode
-      this.configuration.locale = parsedConfiguration.locale
+      this.configuration.country = parsedConfiguration.country ?? DefaultConfiguration.country
+      this.configuration.currency = parsedConfiguration.currency ?? DefaultConfiguration.currency
+      this.configuration.imposition =
+        parsedConfiguration.imposition ?? DefaultConfiguration.imposition
+      this.configuration.incomeMode =
+        parsedConfiguration.incomeMode ?? DefaultConfiguration.incomeMode
+      this.configuration.locale = parsedConfiguration.locale ?? DefaultConfiguration.locale
     }
     this.$i18n.locale = this.configuration.locale
   },

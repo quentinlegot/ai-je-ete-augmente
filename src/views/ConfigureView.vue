@@ -2,11 +2,14 @@
 import { defineComponent } from 'vue'
 import type { Configuration } from '@/components/SharedConfiguration'
 import { SharedConfiguration, DefaultConfiguration } from '@/components/SharedConfiguration'
+import type { countryCode } from '@/components/CountryCodes'
+import { countryCodes } from '@/components/CountryCodes'
 
 export default defineComponent({
   data() {
     return {
       configuration: SharedConfiguration as Configuration,
+      countryCodes: countryCodes as countryCode[],
       saved: 0 as number,
       savedTimeout: null as null | number
     }
@@ -60,17 +63,31 @@ export default defineComponent({
     </blockquote>
     <div class="divide-y-2 divide-dashed">
       <form class="mb-5 grid grid-cols-1 pt-5" v-on:submit.prevent="">
-        <label for="newDate" class="md:flex md:flex-row md:justify-between">
+        <label for="language" class="md:flex md:flex-row md:justify-between">
           <span> {{ $t('configure.language.label') }}</span>
-          <small class="text-xs">{{ $t('configure.language.helper') }}</small>
         </label>
-        <select v-model="configuration.locale">
+        <select id="language" v-model="configuration.locale">
           <option value="fr">{{ $t('configure.language.options.fr') }}</option>
           <option value="en">{{ $t('configure.language.options.en') }}</option>
         </select>
       </form>
+      <form class="mb-5 grid grid-cols-1 pt-5" v-on:submit.prevent="">
+        <label for="country" class="md:flex md:flex-row md:justify-between">
+          <span> {{ $t('configure.country.label') }}</span>
+        </label>
+        <select id="country" v-model="configuration.country">
+          <option
+            v-for="(countryCode, index) in countryCodes"
+            v-bind:key="index"
+            :value="countryCode"
+          >
+            <!-- eslint-disable-next-line @intlify/vue-i18n/no-dynamic-keys -->
+            {{ $t('configure.country.options.' + countryCode) }}
+          </option>
+        </select>
+      </form>
       <form class="mb-5" v-on:submit.prevent="">
-        <label for="newDate" class="block"> {{ $t('configure.currency.label') }} </label>
+        <label for="configCurrency" class="block"> {{ $t('configure.currency.label') }} </label>
         <input
           type="text"
           required

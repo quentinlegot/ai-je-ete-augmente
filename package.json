@@ -11,7 +11,8 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "format-check": "prettier --check src/"
+    "format-check": "prettier --check src/",
+    "import": "ts-node src/import.ts"
   },
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "^0.12.2",
@@ -34,6 +35,7 @@
     "@vue/test-utils": "^2.3.2",
     "@vue/tsconfig": "^0.4.0",
     "autoprefixer": "^10.4.14",
+    "axios": "^1.4.0",
     "eslint": "^8.44.0",
     "eslint-plugin-vue": "^9.11.0",
     "jsdom": "^22.1.0",
@@ -42,9 +44,11 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwindcss": "^3.3.2",
+    "ts-node": "^10.9.1",
     "typescript": "~5.0.4",
     "vite": "^4.3.9",
     "vitest": "^0.32.0",
-    "vue-tsc": "^1.6.5"
+    "vue-tsc": "^1.6.5",
+    "zlib": "^1.0.5"
   }
 }
