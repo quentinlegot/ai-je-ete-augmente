@@ -157,8 +157,27 @@ export default defineComponent({
         {{ $t('salary.summary.change.none') }}
       </p>
     </template>
-    <p class="flex self-end p-5 text-xs underline">
-      <RouterLink to="/how">{{ $t('salary.summary.helper') }}</RouterLink>
+    <p class="self-end p-5 text-xs underline">
+      <span
+        v-if="
+          numberOfSalaryChanges > 0 &&
+          configuration.useCustomInflation &&
+          configuration.customInflation !== null
+        "
+        class="m-3 block md:inline"
+      >
+        <RouterLink to="/configure">{{ $t('salary.summary.custom') }}</RouterLink>
+      </span>
+      <span v-else-if="numberOfSalaryChanges > 0" class="m-3 block md:inline">
+        <RouterLink to="/configure">{{
+          $t('salary.summary.source', {
+            country: $t('configure.country.options.' + configuration.country)
+          })
+        }}</RouterLink>
+      </span>
+      <span class="m-3 block md:inline">
+        <RouterLink to="/how">{{ $t('salary.summary.helper') }}</RouterLink>
+      </span>
     </p>
   </div>
 </template>

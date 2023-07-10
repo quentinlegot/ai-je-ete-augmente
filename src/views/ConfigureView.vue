@@ -144,7 +144,6 @@ export default defineComponent({
             v-bind:key="index"
             :value="countryCode"
           >
-            <!-- eslint-disable-next-line @intlify/vue-i18n/no-dynamic-keys -->
             {{ $t('configure.country.options.' + countryCode) }}
           </option>
         </select>

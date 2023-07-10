@@ -227,7 +227,9 @@
         "one": "In {period}, you salary valuation did'nt change. | In {period}, your salary lost <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> of its value. | In {period}, you salary valuation increased by <span class=\"font-bold text-red-500\">{changeAdjusted}%</span>. ",
         "helper": "Add another salary to see the gap between them adjusted with the inflation. "
       },
+      "custom": "Using custom inflation rates ✍\uFE0F",
       "helper": "How does it work?",
+      "source": "Using inflation rates from {country}",
       "time": {
         "months": "{number} months",
         "more": " more than {number} years",

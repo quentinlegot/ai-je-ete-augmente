@@ -227,7 +227,9 @@
         "one": "En {period}, votre salaire n'a pas changé de valeur. | En {period}, votre salaire a perdu <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. | En {period}, votre salaire a gagné <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. ",
         "helper": "Ajoutez un second salaire pour voir la différence ajustée par l'inflation. "
       },
+      "custom": "Avec des taux d'inflation personnalisés ✍\uFE0F",
       "helper": "Comment ça marche ?",
+      "source": "Avec les taux d'inflation de {country}",
       "time": {
         "months": "{number} mois",
         "more": " un peu plus de {number} ans",
