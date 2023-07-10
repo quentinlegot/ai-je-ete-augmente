@@ -109,7 +109,7 @@ export default defineComponent({
             $t(
               'salary.summary.change.multi.announced',
               {
-                change: overallChange.toPrecision(3),
+                change: (overallChange < 0 ? overallChange * -1 : overallChange).toPrecision(3),
                 numberOfChanges: numberOfSalaryChanges - 1,
                 period: timeElapsed
               },
@@ -122,7 +122,10 @@ export default defineComponent({
             $t(
               'salary.summary.change.multi.adjusted',
               {
-                changeAdjusted: overallChangeAdjusted.toPrecision(3)
+                changeAdjusted: (overallChangeAdjusted < 0
+                  ? overallChangeAdjusted * -1
+                  : overallChangeAdjusted
+                ).toPrecision(3)
               },
               overallChangeAdjusted
             )

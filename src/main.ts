@@ -24,7 +24,7 @@ const i18n = createI18n({
   globalInjection: true,
   legacy: false,
   locale: 'fr',
-  pluralizationRules: {
+  pluralRules: {
     en: increaseOrDecreaseRule,
     fr: increaseOrDecreaseRule
   },
