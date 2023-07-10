@@ -10,7 +10,7 @@ import {
   AdjustedSalaryCreateFirst,
   AdjustedSalaryCreateFromPrevious
 } from '@/components/AdjustedSalary'
-import type { InflationRates } from '@/components/InflationRates'
+import type { CountryInflationRates, InflationRates } from '@/components/InflationRates'
 import AdjustedSalariesSummary from '@/components/AdjustedSalariesSummary.vue'
 import type { Configuration } from '@/components/SharedConfiguration'
 import { SharedConfiguration } from '@/components/SharedConfiguration'
@@ -20,7 +20,7 @@ export default defineComponent({
   data() {
     return {
       configuration: SharedConfiguration as Configuration,
-      inflationRates: {} as InflationRates,
+      inflationRates: {} as CountryInflationRates,
       salaries: [] as Salary[],
       missingInflationRates: [] as Array<string>
     }
@@ -42,6 +42,10 @@ export default defineComponent({
         return []
       }
 
+      const inflationRates: InflationRates =
+        this.configuration.useCustomInflation && this.configuration.customInflation !== null
+          ? this.configuration.customInflation
+          : this.inflationRates[this.configuration.country] ?? {}
       const toMonth = new Date().getMonth() + 1
       const toYear = new Date().getFullYear()
       const [sYear, sMonth] = clonedSalaries[0].date.split('-')
@@ -64,21 +68,14 @@ export default defineComponent({
         let sMonth = ('' + month).padStart(2, '0')
         let sYear = '' + year
         let date = sYear + '-' + sMonth
-        if (
-          !(this.configuration.country in this.inflationRates) ||
-          !(date in this.inflationRates[this.configuration.country])
-        ) {
+        if (!(date in inflationRates)) {
           if (clonedSalaries.length === 0) {
             break
           }
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.missingInflationRates.push(date)
         }
-        let inflationRate =
-          this.configuration.country in this.inflationRates &&
-          date in this.inflationRates[this.configuration.country]
-            ? this.inflationRates[this.configuration.country][date]
-            : 0
+        let inflationRate = date in inflationRates ? inflationRates[date] : 0
         cumulatedInflationMultiplier *= 1 + inflationRate / 100
 
         if (clonedSalaries.length > 0 && date == clonedSalaries[0].date) {

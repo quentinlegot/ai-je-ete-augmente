@@ -85,6 +85,12 @@
       "helper": "Only used for display",
       "label": "Currency"
     },
+    "custom": {
+      "error": "⚠ Warning, pending modification not saved as the json data is not yet valid",
+      "helper": "Text must be a valid json structure listing only numbers with keys representing the date with format YYYY-MM",
+      "placeholder": "{'{\"2023-07\": 0.1, \"2023-06\": -0.3, \"2023-05\": 0}'}",
+      "label": "Use custom inflation rates ✍\uFE0F"
+    },
     "data": {
       "reset": "⚠️ Reset saved data and configuration"
     },
