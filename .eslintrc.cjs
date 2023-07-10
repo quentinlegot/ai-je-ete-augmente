@@ -17,7 +17,6 @@ module.exports = {
     node: true
   },
   rules: {
-    '@intlify/vue-i18n/no-dynamic-keys': 'error',
     '@intlify/vue-i18n/no-unused-keys': [
       'error',
       {

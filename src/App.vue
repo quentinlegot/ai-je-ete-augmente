@@ -16,11 +16,15 @@ export default {
       const parsedConfiguration = JSON.parse(retrievedConfiguration)
       this.configuration.country = parsedConfiguration.country ?? DefaultConfiguration.country
       this.configuration.currency = parsedConfiguration.currency ?? DefaultConfiguration.currency
+      this.configuration.customInflation =
+        parsedConfiguration.customInflation ?? DefaultConfiguration.customInflation
       this.configuration.imposition =
         parsedConfiguration.imposition ?? DefaultConfiguration.imposition
       this.configuration.incomeMode =
         parsedConfiguration.incomeMode ?? DefaultConfiguration.incomeMode
       this.configuration.locale = parsedConfiguration.locale ?? DefaultConfiguration.locale
+      this.configuration.useCustomInflation =
+        parsedConfiguration.useCustomInflation ?? DefaultConfiguration.useCustomInflation
     }
     this.$i18n.locale = this.configuration.locale
   },

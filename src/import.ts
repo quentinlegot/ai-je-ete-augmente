@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as fs from 'fs'
 import * as zlib from 'zlib'
 import * as readline from 'readline'
-import type { InflationRates } from './components/InflationRates'
+import type { CountryInflationRates } from './components/InflationRates'
 import type { countryCode } from './components/CountryCodes'
 import { countryCodes } from './components/CountryCodes'
 
@@ -53,7 +53,7 @@ function convertTSVToJson(inputFilePath: string, outputDirectory: string): Promi
       })
     })
     lineReader.on('line', (line: string) => {
-      const jsonData = {} as InflationRates
+      const jsonData: CountryInflationRates = {}
 
       const columns = line.split('\t')
       if (!columns[0].startsWith(eurostatIndicatorForInflationRate)) {

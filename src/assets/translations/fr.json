@@ -85,6 +85,12 @@
       "helper": "Ne sert que pour l'affichage",
       "label": "Devise"
     },
+    "custom": {
+      "error": "⚠ Attention, modification non sauvegardée car la structure json n'est pas valide",
+      "helper": "Le texte doit être une structure json valide listant uniquement des nombres indexés par la date au format YYYY-MM",
+      "placeholder": "{'{\"2023-07\": 0.1, \"2023-06\": -0.3, \"2023-05\": 0}'}",
+      "label": "Utiliser des taux d'inflation personnalisées ✍\uFE0F"
+    },
     "data": {
       "reset": "⚠️ Reinitialiser les données et la configuration"
     },
@@ -221,7 +227,9 @@
         "one": "En {period}, votre salaire n'a pas changé de valeur. | En {period}, votre salaire a perdu <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. | En {period}, votre salaire a gagné <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. ",
         "helper": "Ajoutez un second salaire pour voir la différence ajustée par l'inflation. "
       },
+      "custom": "Avec des taux d'inflation personnalisés ✍\uFE0F",
       "helper": "Comment ça marche ?",
+      "source": "Avec les taux d'inflation de {country}",
       "time": {
         "months": "{number} mois",
         "more": " un peu plus de {number} ans",

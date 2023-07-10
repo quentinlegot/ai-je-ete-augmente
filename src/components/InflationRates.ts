@@ -1,1 +1,3 @@
-export type InflationRates = Record<string | number, Record<string, number>>
+export type InflationRates = Record<string, number>
+
+export type CountryInflationRates = Record<string, InflationRates>
