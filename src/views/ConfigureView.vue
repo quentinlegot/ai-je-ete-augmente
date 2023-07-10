@@ -117,8 +117,8 @@ export default defineComponent({
       <form class="mb-5 grid grid-cols-1 pt-5 md:grid-cols-2" v-on:submit.prevent="">
         <label
           for="useCustomInflation"
-          class="mb-3 text-slate-500 md:mb-0 md:inline"
-          :class="configuration.useCustomInflation ? 'text-black' : ''"
+          class="mb-3 md:mb-0 md:inline"
+          :class="configuration.useCustomInflation ? 'text-black' : 'text-slate-500 '"
         >
           <span> {{ $t('configure.custom.label') }}</span>
         </label>
