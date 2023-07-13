@@ -19,8 +19,8 @@
       "title": "Discuss"
     },
     "goal": {
-      "p1": "This project was born out of the desire to determine the real raise %, in relation to the loss of salary due to inflation since the previous raise. ",
-      "p2": "If you want to delve deeper into the subject of inflation, there are many more detailed and serious sources. ",
+      "p1": "This project was born out of the desire to determine the real percentage raise, in relation to the loss of salary due to inflation since the previous raise. ",
+      "p2": "If you want to delve deeper into the subject of inflation, there are many more detailed and accurate sources. ",
       "p3": "<li><a href=\"https://ec.europa.eu/eurostat/web/main/home\" target=\"_blank\" class=\"underline\">Eurostat website 🇪🇺</a></li><li><a href=\"https://ec.europa.eu/eurostat/cache/metadata/en/prc_hicp_esms.htm\" target=\"_blank\" class=\"underline\">Eurostat explanation of HICP</a></li><li>(🇫🇷) <a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">France's economic website</a></li>",
       "title": "Goal"
     },
@@ -30,7 +30,7 @@
       "title": "Legal Notices"
     },
     "why": {
-      "p1": "In the course of 2022, inflation rates soared in France ( and in Europe overall ). Many wondered whether the annual \"raises\" would, at least, cover the rise in prices. ",
+      "p1": "In the course of 2022, inflation rates soared in France (and in Europe overall). Many wondered whether the annual \"raises\" would, at least, cover the rise in prices. ",
       "p2": "Turns out the question was relevant for all previous years, but we don't often think about it. ",
       "title": "About"
     }
@@ -40,45 +40,45 @@
     "country": {
       "label": "Country selection for inflation data",
       "options": {
-        "al": "🇦🇱 Albania",
-        "at": "🇦🇹 Austria",
-        "be": "🇧🇪 Belgium",
-        "bg": "🇧🇬 Bulgaria",
-        "ch": "🇨🇭 Switzerland",
-        "cy": "🇨🇾 Cyprus",
-        "cz": "🇨🇿 Czech Republic",
-        "de": "🇩🇪 Germany",
-        "dk": "🇩🇰 Denmark",
-        "ee": "🇪🇪 Estonia",
-        "el": "🇬🇷 Greece",
-        "es": "🇪🇸 Spain",
-        "eu": "🇪🇺 Europe",
-        "fi": "🇫🇮 Finland",
-        "fr": "🇫🇷 France",
-        "hr": "🇭🇷 Croatia",
-        "hu": "🇭🇺 Hungary",
-        "ie": "🇮🇪 Ireland",
-        "is": "🇮🇸 Iceland",
-        "it": "🇮🇹 Italy",
-        "lt": "🇱🇹 Lithuania",
-        "lu": "🇱🇺 Luxembourg",
-        "lv": "🇱🇻 Latvia",
-        "me": "🇲🇪 Montenegro",
-        "mk": "🇲🇰 North Macedonia",
-        "mt": "🇲🇹 Malta",
-        "nl": "🇳🇱 Netherlands-Bas",
-        "no": "🇳🇴 Norway",
-        "pl": "🇵🇱 Poland",
-        "pt": "🇵🇹 Portugal",
-        "ro": "🇷🇴 Romania",
-        "rs": "🇷🇸 Serbia",
-        "se": "🇸🇪 Sweden",
-        "si": "🇸🇮 Slovenia",
-        "sk": "🇸🇰 Slovakia",
-        "tr": "🇹🇷 Turkey",
-        "uk": "🇬🇧 United Kingdom",
-        "us": "🇺🇸 United States",
-        "xk": "🇽🇰 Kosovo"
+        "al": "Albania 🇦🇱",
+        "at": "Austria 🇦🇹",
+        "be": "Belgium 🇧🇪",
+        "bg": "Bulgaria 🇧🇬",
+        "ch": "Switzerland 🇨🇭",
+        "cy": "Cyprus 🇨🇾",
+        "cz": "Czech Republic 🇨🇿",
+        "de": "Germany 🇩🇪",
+        "dk": "Denmark 🇩🇰",
+        "ee": "Estonia 🇪🇪",
+        "el": "Greece 🇬🇷",
+        "es": "Spain 🇪🇸",
+        "eu": "Europe 🇪🇺",
+        "fi": "Finland 🇫🇮",
+        "fr": "France 🇫🇷",
+        "hr": "Croatia 🇭🇷",
+        "hu": "Hungary 🇭🇺",
+        "ie": "Ireland 🇮🇪",
+        "is": "Iceland 🇮🇸",
+        "it": "Italy 🇮🇹",
+        "lt": "Lithuania 🇱🇹",
+        "lu": "Luxembourg 🇱🇺",
+        "lv": "Latvia 🇱🇻",
+        "me": "Montenegro 🇲🇪",
+        "mk": "North Macedonia 🇲🇰",
+        "mt": "Malta 🇲🇹",
+        "nl": "Netherlands-Bas 🇳🇱",
+        "no": "Norway 🇳🇴",
+        "pl": "Poland 🇵🇱",
+        "pt": "Portugal 🇵🇹",
+        "ro": "Romania 🇷🇴",
+        "rs": "Serbia 🇷🇸",
+        "se": "Sweden 🇸🇪",
+        "si": "Slovenia 🇸🇮",
+        "sk": "Slovakia 🇸🇰",
+        "tr": "Turkey 🇹🇷",
+        "uk": "United Kingdom 🇬🇧",
+        "us": "United States 🇺🇸",
+        "xk": "Kosov 🇽🇰o"
       }
     },
     "currency": {
@@ -113,8 +113,8 @@
     "language": {
       "label": "UI language",
       "options": {
-        "en": "🇬🇧 English",
-        "fr": "🇫🇷 Français"
+        "en": "English 🇬🇧",
+        "fr": "Français 🇫🇷"
       }
     },
     "saved": "Parameters have been saved | Parameters have been saved ({count})"
@@ -125,7 +125,7 @@
       "title": "Where do inflation rates come from?"
     },
     "operating": {
-      "p1": "The oldest salary is your reference income. This salary allows you to by a <i>pile of stuff</i>. ",
+      "p1": "The oldest salary is your reference income. This salary allows you to buy a <i>pile of stuff</i>. ",
       "p2": "Over time, because of the inflation going on, the same <i>pile of stuff</i> is going to be increasingly expensive. As a result, you salary will allow you to buy only a smaller portion of that same <i>pile of stuff</i>. ",
       "p3": "Following raises are then recalculated to reflect how they allow you to buy the same <i>pile of stuff</i>. ",
       "p4": "The change in the ability to buy the <i>pile of stuff</i> is represented on the chart by the gap between the announced salary and the adjusted salary. ",
@@ -137,7 +137,7 @@
         "2": "the main page",
         "3": ", fill in the successive salary changes over time. "
       },
-      "p2": "You will be able to see the raise % announced, and below, the real change adjusted with the inflation. ",
+      "p2": "You will be able to see the percentage raise announced, and below, the real change adjusted with the inflation. ",
       "p3": {
         "1": "Over ",
         "2": "the configuration page",
