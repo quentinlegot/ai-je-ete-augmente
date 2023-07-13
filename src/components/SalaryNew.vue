@@ -152,6 +152,7 @@ export default defineComponent({
     <input
       type="number"
       min="0"
+      step="0.01"
       required
       :placeholder="placeholderSalary"
       v-model="newIncome"
