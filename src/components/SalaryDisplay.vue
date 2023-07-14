@@ -60,83 +60,119 @@ export default defineComponent({
     <div
       class="-ml-[16px] h-[30px] w-[30px] shrink-0 rounded-full border-2 border-red-500 bg-white text-center align-middle group-hover/salary:bg-red-500"
     >
-      <span v-if="salary.state === 'up'">{{ $t('salary.history.indicator.up') }}</span>
-      <span v-else-if="salary.state === 'down'">{{ $t('salary.history.indicator.down') }}</span>
-      <span v-else>{{ $t('salary.history.indicator.base') }}</span>
+      <i18n-t v-if="salary.state === 'up'" keypath="salary.history.indicator.up" />
+      <i18n-t v-else-if="salary.state === 'down'" keypath="salary.history.indicator.down" />
+      <i18n-t v-else keypath="salary.history.indicator.base" />
     </div>
     <div class="relative mb-5 block max-w-md grow p-2">
       <p class="text-sm text-neutral-500">
         {{ salary.originalSalary.date }}
       </p>
       <h3 class="m-1 text-xl font-semibold">
-        {{ salary.originalSalary.income }}{{ configuration.currency }}
-        <small class="text-sm text-neutral-800"> {{ salaryRecurrence }} </small>
+        <i18n-t keypath="salary.history.change.title">
+          <template v-slot:income>
+            <i18n-n :value="salary.originalSalary.income" format="salary" />
+          </template>
+          <template v-slot:currency>
+            {{ configuration.currency }}
+          </template>
+          <template v-slot:recurrence>
+            <small class="text-sm text-neutral-800">
+              {{ salaryRecurrence }}
+            </small>
+          </template>
+        </i18n-t>
       </h3>
       <p v-if="salary.salaryChangeAdjusted === 0" class="text-sm text-neutral-500">
-        {{ $t('salary.history.change.base') }}
+        <i18n-t keypath="salary.history.change.base" />
       </p>
       <p v-else-if="salary.salaryChange === Infinity" class="text-sm text-neutral-500">
-        {{ $t('salary.history.change.base') }}
+        <i18n-t keypath="salary.history.change.base" />
       </p>
       <template v-else-if="salary.salaryChange > 0">
         <p class="text-sm text-neutral-500">
-          {{ $t('salary.history.change.increase') }}
-          <span class="text-red-500">{{ salaryChange }}</span>
+          <i18n-t keypath="salary.history.change.increase">
+            <template v-slot:change>
+              <span class="text-red-500">
+                <i18n-n :value="salary.salaryChange / 100" format="raise" />
+              </span>
+            </template>
+          </i18n-t>
         </p>
         <p class="text-sm text-neutral-500">
-          {{ $t('salary.history.change.increaseAdjusted') }}
-          <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
+          <i18n-t keypath="salary.history.change.increaseAdjusted">
+            <template v-slot:change>
+              <span class="font-bold text-red-500">
+                <i18n-n :value="salary.salaryChangeAdjusted / 100" format="raise" />
+              </span>
+            </template>
+          </i18n-t>
         </p>
       </template>
       <template v-else-if="salary.salaryChange < 0 && salary.income > 0">
         <p class="text-sm text-neutral-500">
-          {{ $t('salary.history.change.decrease') }}
-          <span class="text-red-500">{{ salaryChange }}</span>
+          <i18n-t keypath="salary.history.change.decrease">
+            <template v-slot:change>
+              <span class="text-red-500">
+                <i18n-n :value="salary.salaryChange / 100" format="raise" />
+              </span>
+            </template>
+          </i18n-t>
         </p>
         <p class="text-sm text-neutral-500">
-          {{ $t('salary.history.change.decreaseAdjusted') }}
-          <span class="font-bold text-red-500">{{ salaryChangeAdjusted }}</span>
+          <i18n-t keypath="salary.history.change.decreaseAdjusted">
+            <template v-slot:change>
+              <span class="text-red-500">
+                <i18n-n :value="salary.salaryChangeAdjusted / 100" format="raise" />
+              </span>
+            </template>
+          </i18n-t>
         </p>
       </template>
       <p v-else-if="salary.income === 0" class="text-sm text-neutral-500">
-        {{ $t('salary.history.change.remove') }}
+        <i18n-t keypath="salary.history.change.remove" />
       </p>
       <button
         v-on:click="removeSalary(salary)"
         class="rounded border border-yellow-100 p-1 text-sm text-slate-300 hover:bg-yellow-300 hover:text-white group-hover/salary:border-yellow-300 group-hover/salary:text-black"
       >
-        {{ $t('salary.history.remove') }}
+        <i18n-t keypath="salary.history.remove" />
       </button>
       <div
         v-if="configuration.incomeMode === 'gross-annual'"
         class="md:auto hidden whitespace-nowrap md:absolute md:left-full md:top-5 md:z-10 md:-ml-5 md:rounded-r-3xl md:border md:bg-white md:p-3 md:shadow-md md:shadow-red-500 md:group-hover/salary:block"
       >
         <h4 class="m-1 text-lg font-medium">
-          {{
-            $t('salary.history.change.alternative.display', {
-              currency: configuration.currency,
-              value: salary.income.toPrecision(5)
-            })
-          }}
-          <small class="text-sm text-neutral-800"> {{ effectiveSalaryRecurrence }} </small>
+          <i18n-t keypath="salary.history.change.alternative.display">
+            <template v-slot:income>
+              <i18n-n :value="salary.income" format="salary" />
+            </template>
+            <template v-slot:currency>
+              {{ configuration.currency }}
+            </template>
+            <template v-slot:recurrence>
+              <small class="text-sm text-neutral-800"> {{ effectiveSalaryRecurrence }} </small>
+            </template>
+          </i18n-t>
         </h4>
         <p class="text-xs text-slate-500">
-          {{
-            $t('salary.history.change.alternative.details', {
-              income: salary.originalSalary.income
-            })
-          }}
+          <i18n-t keypath="salary.history.change.alternative.details">
+            <template v-slot:income>
+              {{ salary.originalSalary.income }}
+            </template>
+          </i18n-t>
         </p>
         <p class="text-xs text-slate-500">
-          {{ $t('salary.history.change.alternative.imposition.1')
-          }}<RouterLink to="/configure" class="underline">{{
-            $t('salary.history.change.alternative.imposition.2')
-          }}</RouterLink
-          >{{
-            $t('salary.history.change.alternative.imposition.3', {
-              imposition: configuration.imposition
-            })
-          }}
+          <i18n-t keypath="salary.history.change.alternative.imposition.p">
+            <template v-slot:link>
+              <RouterLink to="/configure" class="underline">
+                <i18n-t keypath="salary.history.change.alternative.imposition.link" />
+              </RouterLink>
+            </template>
+            <template v-slot:imposition>
+              {{ configuration.imposition }}
+            </template>
+          </i18n-t>
         </p>
       </div>
     </div>

@@ -48,19 +48,21 @@ export default {
         to="/"
         class="block border-b border-b-white p-5 font-medium uppercase md:flex-none md:border-none"
       >
-        {{ $t('menu.title') }}
+        <i18n-t keypath="menu.title" />
       </RouterLink>
     </h1>
     <nav class="divide-y divide-dashed md:flex md:grow md:flex-row md:justify-end md:divide-none">
       <RouterLink to="/" class="block p-5 hover:bg-red-600 md:hidden lg:block">
-        {{ $t('menu.home') }}
+        <i18n-t keypath="menu.home" />
       </RouterLink>
       <RouterLink to="/configure" class="block p-5 hover:bg-red-600">
-        {{ $t('menu.configure') }}
+        <i18n-t keypath="menu.configure" />
       </RouterLink>
-      <RouterLink to="/how" class="block p-5 hover:bg-red-600"> {{ $t('menu.how') }} </RouterLink>
+      <RouterLink to="/how" class="block p-5 hover:bg-red-600">
+        <i18n-t keypath="menu.how" />
+      </RouterLink>
       <RouterLink to="/about" class="block p-5 hover:bg-red-600">
-        {{ $t('menu.about') }}
+        <i18n-t keypath="menu.about" />
       </RouterLink>
     </nav>
   </header>

@@ -142,7 +142,11 @@ export default defineComponent({
     <section class="inline-block shrink-0">
       <div class="contents" :class="salaries.length == 0 ? 'hidden' : ''">
         <h2 class="my-5 text-lg text-slate-800">
-          {{ $t('salary.history.title', { number: salaries.length }) }}
+          <i18n-t keypath="salary.history.title">
+            <template v-slot:number>
+              {{ salaries.length }}
+            </template>
+          </i18n-t>
         </h2>
         <ol class="mb-5 border-l-2 border-red-500">
           <salary-display
@@ -159,16 +163,14 @@ export default defineComponent({
       <div class="sticky top-0">
         <inflation-chart :adjusted-salaries="adjustedSalaries" />
         <p v-if="missingInflationRates.length > 0" class="m-5 p-2 text-sm italic">
-          {{
-            $t(
-              'salary.warning',
-              {
-                dates: missingInflationRates.join(', '),
-                number: missingInflationRates.length
-              },
-              missingInflationRates.length
-            )
-          }}
+          <i18n-t keypath="salary.warning" :plural="missingInflationRates.length">
+            <template v-slot:dates>
+              {{ missingInflationRates.join(', ') }}
+            </template>
+            <template v-slot:number>
+              {{ missingInflationRates.length }}
+            </template>
+          </i18n-t>
         </p>
         <adjusted-salaries-summary :adjusted-salaries="adjustedSalaries" />
       </div>

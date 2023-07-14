@@ -123,12 +123,18 @@ export default defineComponent({
   >
     {{ errorMessage }}
   </p>
-  <h2 class="my-5 text-lg text-slate-800">{{ $t('salary.new.title') }}</h2>
+  <h2 class="my-5 text-lg text-slate-800">
+    <i18n-t keypath="salary.new.title" />
+  </h2>
   <form v-on:submit.prevent="addSalary()" class="relative min-w-0 text-xs">
-    <label for="newDateYear" class="mt-3 block"> {{ $t('salary.new.date.label') }}</label>
+    <label for="newDateYear" class="mt-3 block">
+      <i18n-t keypath="salary.new.date.label" />
+    </label>
     <div>
       <select required v-model="newDateYear" id="newDateYear" class="inline-block w-1/2">
-        <option value="" selected disabled>{{ $t('salary.new.date.year') }}</option>
+        <option value="" selected disabled>
+          <i18n-t keypath="salary.new.date.year" />
+        </option>
         <option
           v-for="(availableYear, index) in availableYears"
           v-bind:key="index"
@@ -138,7 +144,9 @@ export default defineComponent({
         </option>
       </select>
       <select required v-model="newDateMonth" id="newDateMonth" class="inline-block w-1/2">
-        <option value="" selected disabled>{{ $t('salary.new.date.months') }}</option>
+        <option value="" selected disabled>
+          <i18n-t keypath="salary.new.date.months" />
+        </option>
         <option
           v-for="(availableMonth, index) in availableMonths"
           v-bind:key="index"
@@ -148,7 +156,9 @@ export default defineComponent({
         </option>
       </select>
     </div>
-    <label for="newDate" class="mt-3 block">{{ $t('salary.new.salary.label') }} </label>
+    <label for="newDate" class="mt-3 block">
+      <i18n-t keypath="salary.new.salary.label" />
+    </label>
     <input
       type="number"
       min="0"
@@ -163,7 +173,7 @@ export default defineComponent({
       type="submit"
       class="mt-3 rounded border border-green-800 p-2 hover:bg-green-800 hover:text-white"
     >
-      {{ $t('salary.new.add') }}
+      <i18n-t keypath="salary.new.add" />
     </button>
   </form>
 </template>

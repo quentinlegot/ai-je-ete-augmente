@@ -2,31 +2,37 @@
   "about": {
     "contribute": {
       "p1": {
-        "1": "Si vous souhaitez participer, ",
-        "2": "les sources sont disponibles ici",
-        "3": ". "
+        "link": "les sources sont disponibles ici",
+        "p": "Si vous souhaitez participer, {link}."
       },
       "title": "Contribuer"
     },
     "discuss": {
       "p1": {
-        "1": "Pour discuter du projet, rendez-vous ",
-        "2": "sur mastodon 🦣",
-        "3": " ou bien ",
-        "4": " sur twitter 🐦",
-        "5": ". "
+        "linkMastodon": "sur mastodon 🦣",
+        "linkTwitter": " sur twitter 🐦",
+        "p": "Pour discuter du projet, rendez-vous {linkMastodon} ou bien {linkTwitter}. "
       },
       "title": "Discuter"
     },
     "goal": {
       "p1": "Ce projet est né de la volonté de déterminer le % d'augmentation réelle, par rapport à la perte de salaire suite à l'inflation, depuis la précédente augmentation. ",
       "p2": "Si vous souhaitez aller plus loin sur le sujet de l'inflation, il existe de multiples sources bien plus fournies et sérieuses. ",
-      "p3": "<li><a href=\"https://www.economie.gouv.fr/cedef/evolution-prix-consommation\" target=\"_blank\" class=\"underline\">Le site du gouvernement</a></li><li><a href=\"https://www.insee.fr/fr/statistiques/4268033\" target=\"_blank\" class=\"underline\">L'insee</a></li><li><a href=\"https://ec.europa.eu/eurostat/web/main/home\" target=\"_blank\" class=\"underline\">Eurostat 🇪🇺</a></li><li>(🇬🇧) <a href=\"https://ec.europa.eu/eurostat/cache/metadata/en/prc_hicp_esms.htm\" target=\"_blank\" class=\"underline\">Explications d'Eurostat sur l'HICP</a></li><li><a href=\"https://france-inflation.com\" target=\"_blank\" class=\"underline\">https://france-inflation.com</a></li>",
+      "p3": {
+        "1": "Le site du gouvernement",
+        "2": "L'insee",
+        "3": "Eurostat 🇪🇺",
+        "4": "(🇬🇧) Explications d'Eurostat sur l'HICP",
+        "5": "https://france-inflation.com"
+      },
       "title": "Objectif"
     },
     "legal": {
       "p1": "Aucune donnée n'est collectée. ",
-      "p2": "Ce site est hébergé par <a href=\"https://www.ovhcloud.com/fr/terms-and-conditions/\" target=\"_blank\" class=\"underline\">OVH, 2 rue Kellermann - 59100 Roubaix - France</a>. ",
+      "p2": {
+        "link": "OVH, 2 rue Kellermann - 59100 Roubaix - France",
+        "p": "Ce site est hébergé par {link}. "
+      },
       "title": "Mentions Légales"
     },
     "why": {
@@ -119,29 +125,34 @@
     },
     "saved": "Les paramètres ont été sauvegardé | Les paramètres ont été sauvegardé ({count})"
   },
+  "global": {
+    "salary": "{income}{currency}"
+  },
   "how": {
     "inflation": {
-      "p1": "Les taux d'inflations sont ceux publiés par <a href=\"https://ec.europa.eu/eurostat/data/database?node_code=prc_hicp_mmor\" target=\"_blank\" class=\"underline\">la commission européenne Eurostat 🇪🇺</a> pour chaque mois (harmonised index of consumer prices, monthly rate of change). ",
+      "p1": {
+        "link": "la commission européenne Eurostat 🇪🇺",
+        "p": "Les taux d'inflations sont ceux publiés par {link} pour chaque mois (harmonised index of consumer prices, monthly rate of change). "
+      },
       "title": "D'où viennent les taux d'inflation ?"
     },
     "operating": {
-      "p1": "Le salaire le plus ancien sert de revenu de référence. Ce salaire vous permet d'acheter un <i>tas de X trucs</i>. ",
-      "p2": "Au fur et à mesure, du fait de l'inflation, ce <i>tas de X trucs</i> va couter de plus en plus cher. En conséquence, votre salaire vous permettra de ne vous payer plus qu'une portion de plus en plus réduite de ce <i>tas de X trucs</i>. ",
-      "p3": "Les augmentations suivantes sont ainsi recalculées par rapport à la capacité qu'elles vous offrent de vous offrir ce <i>tas de X trucs</i>. ",
-      "p4": "Le changement dans la capacité à acheter le <i>tas de X trucs</i> est matérialisé sur le graphique par l'écart entre le salaire annoncé et celui ajusté. ",
-      "title": "Comment ça fonctionne ?"
+      "p1": "Le salaire le plus ancien sert de revenu de référence. Ce salaire vous permet d'acheter un {stuff}. ",
+      "p2": "Au fur et à mesure, du fait de l'inflation, ce {stuff} va couter de plus en plus cher. En conséquence, votre salaire vous permettra de ne vous payer plus qu'une portion de plus en plus réduite de ce {stuff}. ",
+      "p3": "Les augmentations suivantes sont ainsi recalculées par rapport à la capacité qu'elles vous offrent de vous offrir ce {stuff}. ",
+      "p4": "Le changement dans la capacité à acheter le {stuff} est matérialisé sur le graphique par l'écart entre le salaire annoncé et celui ajusté. ",
+      "title": "Comment ça fonctionne ?",
+      "stuff": "tas de X trucs"
     },
     "usage": {
       "p1": {
-        "1": "Sur ",
-        "2": "la page principale",
-        "3": ", ajoutez les changements de salaires successifs au mois auquels ils sont survenus. "
+        "link": "la page principale",
+        "p": "Sur {link}, ajoutez les changements de salaires successifs au mois auquels ils sont survenus. "
       },
       "p2": "Vous pourrez voir le % d'augmentation annoncé, et en dessous, celui ajusté par rapport à l'inflation. ",
       "p3": {
-        "1": "Sur ",
-        "2": "la page de configuration",
-        "3": ", vous pourrez changer le mode de saisie du salaire et la méthode de calcul en alternant entre salaire annuel brut prélevé d'une imposition, ou salaire mensuel net. "
+        "link": "la page de configuration",
+        "p": "Sur {link}, vous pourrez changer le mode de saisie du salaire et la méthode de calcul en alternant entre salaire annuel brut prélevé d'une imposition, ou salaire mensuel net. "
       },
       "title": "Comment utiliser l'outil ?"
     }
@@ -174,20 +185,20 @@
       "change": {
         "alternative": {
           "details": "{income} * (1 - imposition) / 12",
-          "display": "Soit {value}{currency}",
+          "display": "Soit @:global.salary {recurrence}",
           "imposition": {
-            "1": "avec une imposition ",
-            "2": "configurée",
-            "3": " à {imposition}%"
+            "link": "configurée",
+            "p": "avec une imposition {link} à {imposition}"
           }
         },
         "base": "Salaire de référence",
-        "decrease": "perte de salaire :",
-        "decreaseAdjusted": "changement réel : ",
-        "increase": "augmentation annoncé : ",
-        "increaseAdjusted": "changement réel : ",
+        "decrease": "perte de salaire : {change}",
+        "decreaseAdjusted": "changement réel : {change}",
+        "increase": "augmentation annoncé : {change}",
+        "increaseAdjusted": "changement réel : {change}",
         "new": "Nouveau salaire",
-        "remove": "Perte de revenus"
+        "remove": "Perte de revenus",
+        "title": "@:global.salary {recurrence}"
       },
       "gross": "brut/an",
       "indicator": {
@@ -219,12 +230,12 @@
     "summary": {
       "change": {
         "multi": {
-          "adjusted": "Cela n'a pas induit de changement de revenus. |  Cela correspond en réalité à une diminution de <span class=\"font-bold text-red-500\">{changeAdjusted}%</span>. |  Cela correspond en réalité à une augmentation de <span class=\"font-bold text-red-500\">{changeAdjusted}%</span>. ",
-          "announced": "En {period}, le salaire à été modifié {numberOfChanges} fois, sans changement de valeur. |En {period}, le salaire à été modifié {numberOfChanges} fois, pour une diminution totale annoncée de <span class=\"text-red-500\">{change}%</span>. | En {period}, le salaire à été modifié {numberOfChanges} fois, pour une augmentation totale annoncée de <span class=\"text-red-500\">{change}%</span>. ",
-          "overall": "De <span class=\"font-semibold\">{baseIncome}{currency}</span> à <span class=\"line-through\">{finalIncome}</span> <span class=\"font-semibold\">{finalIncomeAdjusted}{currency}</span> net/mois sur {period} mois. "
+          "adjusted": "Cela n'a pas induit de changement de revenus. |  Cela correspond en réalité à une diminution de {changeAdjusted}. |  Cela correspond en réalité à une augmentation de {changeAdjusted}. ",
+          "announced": "En {period}, le salaire à été modifié {numberOfChanges} fois, sans changement de valeur. | En {period}, le salaire à été modifié {numberOfChanges} fois, pour une diminution totale annoncée de {change}.  | En {period}, le salaire à été modifié {numberOfChanges} fois, pour une augmentation totale annoncée de {change}. ",
+          "overall": "De {baseIncome} à {finalIncome} {finalIncomeAdjusted} net/mois sur {period} mois. "
         },
         "none": "Commencez par saisir un premier salaire pour voir son évolution au cours du temps. ",
-        "one": "En {period}, votre salaire n'a pas changé de valeur. | En {period}, votre salaire a perdu <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. | En {period}, votre salaire a gagné <span class=\"font-bold text-red-500\">{changeAdjusted}%</span> de sa valeur. ",
+        "one": "En {period}, votre salaire n'a pas changé de valeur. | En {period}, votre salaire a perdu {changeAdjusted} de sa valeur. | En {period}, votre salaire a gagné {changeAdjusted} de sa valeur. ",
         "helper": "Ajoutez un second salaire pour voir la différence ajustée par l'inflation. "
       },
       "custom": "Avec des taux d'inflation personnalisés ✍\uFE0F",

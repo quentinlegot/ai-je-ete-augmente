@@ -94,24 +94,34 @@ export default defineComponent({
 
 <template>
   <main class="mx-auto max-w-screen-lg p-5">
-    <h2 class="my-5 text-lg text-slate-800">{{ $t('configure.header') }}</h2>
+    <h2 class="my-5 text-lg text-slate-800">
+      <i18n-t keypath="configure.header" />
+    </h2>
     <blockquote
       v-if="saved > 0"
       class="mb-5 rounded border border-green-800 p-5 text-sm text-green-800"
     >
-      {{ $t('configure.saved', { count: saved }, saved) }}
+      <i18n-t keypath="configure.saved" :plural="saved">
+        <template v-slot:count>
+          {{ saved }}
+        </template>
+      </i18n-t>
     </blockquote>
     <blockquote v-else class="mb-5 rounded border p-5 text-sm text-slate-500">
-      {{ $t('configure.autosave') }}
+      <i18n-t keypath="configure.autosave" />
     </blockquote>
     <div class="divide-y-2 divide-dashed">
       <form class="mb-5 grid grid-cols-1 pt-5" v-on:submit.prevent="">
         <label for="language" class="md:flex md:flex-row md:justify-between">
-          <span> {{ $t('configure.language.label') }}</span>
+          <i18n-t keypath="configure.language.label" />
         </label>
         <select id="language" v-model="configuration.locale">
-          <option value="fr">{{ $t('configure.language.options.fr') }}</option>
-          <option value="en">{{ $t('configure.language.options.en') }}</option>
+          <option value="fr">
+            <i18n-t keypath="configure.language.options.fr" />
+          </option>
+          <option value="en">
+            <i18n-t keypath="configure.language.options.en" />
+          </option>
         </select>
       </form>
       <form class="mb-5 grid grid-cols-1 pt-5 md:grid-cols-2" v-on:submit.prevent="">
@@ -120,7 +130,7 @@ export default defineComponent({
           class="mb-3 md:mb-0 md:inline"
           :class="configuration.useCustomInflation ? 'text-black' : 'text-slate-500 '"
         >
-          <span> {{ $t('configure.custom.label') }}</span>
+          <i18n-t keypath="configure.custom.label" />
         </label>
         <input
           type="checkbox"
@@ -132,7 +142,7 @@ export default defineComponent({
           for="country"
           class="peer-checked/custom-inflation:hidden md:col-span-2 md:flex md:flex-row md:justify-between"
         >
-          <span> {{ $t('configure.country.label') }}</span>
+          <i18n-t keypath="configure.country.label" />
         </label>
         <select
           id="country"
@@ -144,7 +154,7 @@ export default defineComponent({
             v-bind:key="index"
             :value="countryCode"
           >
-            {{ $t('configure.country.options.' + countryCode) }}
+            <i18n-t :keypath="'configure.country.options.' + countryCode" />
           </option>
         </select>
         <textarea
@@ -154,17 +164,19 @@ export default defineComponent({
         >
         </textarea>
         <blockquote class="m-1 hidden text-xs peer-checked/custom-inflation:block md:col-span-2">
-          {{ $t('configure.custom.helper') }}
+          <i18n-t keypath="configure.custom.helper" />
         </blockquote>
         <div
           v-if="pendingCustomInflation"
           class="m-1 hidden text-xs text-orange-800 peer-checked/custom-inflation:block md:col-span-2"
         >
-          {{ $t('configure.custom.error') }}
+          <i18n-t keypath="configure.custom.error" />
         </div>
       </form>
       <form class="mb-5" v-on:submit.prevent="">
-        <label for="configCurrency" class="block"> {{ $t('configure.currency.label') }} </label>
+        <label for="configCurrency" class="block">
+          <i18n-t keypath="configure.currency.label" />
+        </label>
         <input
           type="text"
           required
@@ -173,11 +185,13 @@ export default defineComponent({
           class="ml-3 block md:inline"
         />
         <small class="ml-3 block text-xs md:inline-block">
-          {{ $t('configure.currency.helper') }}
+          <i18n-t keypath="configure.currency.helper" />
         </small>
 
         <fieldset class="mt-3">
-          <legend>{{ $t('configure.incomeMode.label') }}</legend>
+          <legend>
+            <i18n-t keypath="configure.incomeMode.label" />
+          </legend>
           <input
             type="radio"
             value="gross-annual"
@@ -191,7 +205,7 @@ export default defineComponent({
             for="configIncomeGrossAnnual"
             class="mb-3 ml-3 block peer-checked/gross-annual:font-semibold md:ml-0 md:inline"
           >
-            {{ $t('configure.incomeMode.grossAnnual.label') }}
+            <i18n-t keypath="configure.incomeMode.grossAnnual.label" />
           </label>
           <input
             type="radio"
@@ -206,22 +220,22 @@ export default defineComponent({
             for="configIncomeNetMonthly"
             class="mb-3 ml-3 block peer-checked/net-monthly:font-semibold md:ml-0 md:inline"
           >
-            {{ $t('configure.incomeMode.netMonthly.label') }}
+            <i18n-t keypath="configure.incomeMode.netMonthly.label" />
           </label>
           <small
             class="m-3 hidden text-xs peer-checked/gross-annual:block peer-hover/gross-annual:block peer-hover/net-monthly:hidden"
           >
-            {{ $t('configure.incomeMode.grossAnnual.helper') }}
+            <i18n-t keypath="configure.incomeMode.grossAnnual.helper" />
           </small>
           <small
             class="m-3 hidden text-xs peer-checked/net-monthly:block peer-hover/net-monthly:block peer-hover/gross-annual:hidden"
           >
-            {{ $t('configure.incomeMode.netMonthly.helper') }}
+            <i18n-t keypath="configure.incomeMode.netMonthly.helper" />
           </small>
           <div class="ml-3 hidden peer-checked/gross-annual:block md:mt-3">
-            <label for="configImposition">{{
-              $t('configure.incomeMode.grossAnnual.imposition.label')
-            }}</label>
+            <label for="configImposition">
+              <i18n-t keypath="configure.incomeMode.grossAnnual.imposition.label" />
+            </label>
             <input
               type="number"
               size="3"
@@ -234,7 +248,7 @@ export default defineComponent({
               name="configImposition"
             />
             <p class="text-xs md:ml-3 md:inline">
-              {{ $t('configure.incomeMode.grossAnnual.imposition.helper') }}
+              <i18n-t keypath="configure.incomeMode.grossAnnual.imposition.helper" />
             </p>
           </div>
         </fieldset>
@@ -244,7 +258,7 @@ export default defineComponent({
           type="submit"
           class="mt-3 rounded border border-orange-500 p-2 hover:bg-orange-500 hover:text-white"
         >
-          {{ $t('configure.data.reset') }}
+          <i18n-t keypath="configure.data.reset" />
         </button>
       </form>
     </div>

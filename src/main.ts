@@ -19,20 +19,43 @@ const increaseOrDecreaseRule = function (choice: number, choicesLenght: number) 
   return choicesLenght === 2 && choice > 1 ? 1 : 0
 }
 
+const numberFormatting = {
+  raise: {
+    style: 'percent',
+    useGrouping: false,
+    signDisplay: 'exceptZero',
+    maximumFractionDigits: 1
+  },
+  result: {
+    style: 'percent',
+    useGrouping: false,
+    signDisplay: 'never',
+    maximumFractionDigits: 1
+  },
+  salary: {
+    style: 'decimal',
+    useGrouping: true
+  }
+}
+
 const app = createApp(App)
+//@ts-ignore
 const i18n = createI18n({
   globalInjection: true,
   legacy: false,
   locale: 'fr',
-  pluralRules: {
-    en: increaseOrDecreaseRule,
-    fr: increaseOrDecreaseRule
-  },
   messages: {
     en: enTranslation,
     fr: frTranslation
   },
-  warnHtmlInMessage: false
+  numberFormats: {
+    en: numberFormatting,
+    fr: numberFormatting
+  },
+  pluralRules: {
+    en: increaseOrDecreaseRule,
+    fr: increaseOrDecreaseRule
+  }
 })
 
 app.use(router)

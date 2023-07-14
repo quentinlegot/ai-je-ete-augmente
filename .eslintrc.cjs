@@ -23,7 +23,7 @@ module.exports = {
         extensions: ['.js', '.vue']
       }
     ],
-    '@intlify/vue-i18n/no-v-html': 'off'
+    '@intlify/vue-i18n/no-v-html': 'error'
   },
   settings: {
     'vue-i18n': {

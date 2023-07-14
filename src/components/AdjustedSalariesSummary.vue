@@ -91,70 +91,78 @@ export default defineComponent({
 <template>
   <div class="flex flex-col items-center p-5">
     <template v-if="numberOfSalaryChanges > 1">
-      <p
-        class="p-3 text-lg"
-        v-html="
-          $t('salary.summary.change.multi.overall', {
-            baseIncome: incomeReference.toPrecision(5),
-            currency: configuration.currency,
-            finalIncome: incomeFinal.toPrecision(5),
-            finalIncomeAdjusted: incomeFinalAdjusted.toPrecision(5),
-            period: adjustedSalaries.length
-          })
-        "
-      ></p>
       <p class="p-3 text-lg">
-        <span
-          v-html="
-            $t(
-              'salary.summary.change.multi.announced',
-              {
-                change: (overallChange < 0 ? overallChange * -1 : overallChange).toPrecision(3),
-                numberOfChanges: numberOfSalaryChanges - 1,
-                period: timeElapsed
-              },
-              overallChange
-            )
-          "
-        ></span>
-        <span
-          v-html="
-            $t(
-              'salary.summary.change.multi.adjusted',
-              {
-                changeAdjusted: (overallChangeAdjusted < 0
-                  ? overallChangeAdjusted * -1
-                  : overallChangeAdjusted
-                ).toPrecision(3)
-              },
-              overallChangeAdjusted
-            )
-          "
-        ></span>
+        <i18n-t keypath="salary.summary.change.multi.overall">
+          <template v-slot:baseIncome>
+            <span class="font-semibold">
+              <i18n-t keypath="global.salary">
+                <template v-slot:income>
+                  <i18n-n :value="incomeReference" format="salary" />
+                </template>
+                <template v-slot:currency>
+                  {{ configuration.currency }}
+                </template>
+              </i18n-t>
+            </span>
+          </template>
+          <template v-slot:finalIncome>
+            <span class="line-through">
+              <i18n-n :value="incomeFinal" format="salary" />{{ configuration.currency }}
+            </span>
+          </template>
+          <template v-slot:finalIncomeAdjusted>
+            <span class="font-semibold">
+              <i18n-n :value="incomeFinalAdjusted" format="salary" />{{ configuration.currency }}
+            </span>
+          </template>
+          <template v-slot:period>{{ adjustedSalaries.length }}</template>
+        </i18n-t>
+      </p>
+      <p class="p-3 text-center text-lg">
+        <i18n-t keypath="salary.summary.change.multi.announced" :plural="overallChange">
+          <template v-slot:change>
+            <span class="text-red-500">
+              <i18n-n :value="overallChange / 100" format="result" />
+            </span>
+          </template>
+          <template v-slot:numberOfChanges>
+            {{ numberOfSalaryChanges - 1 }}
+          </template>
+          <template v-slot:period>
+            {{ timeElapsed }}
+          </template>
+        </i18n-t>
+      </p>
+      <p class="p-3 text-center text-lg">
+        <i18n-t keypath="salary.summary.change.multi.adjusted" :plural="overallChangeAdjusted">
+          <template v-slot:changeAdjusted>
+            <span class="font-bold text-red-500">
+              <i18n-n :value="overallChangeAdjusted / 100" format="result" />
+            </span>
+          </template>
+        </i18n-t>
       </p>
     </template>
     <template v-else-if="numberOfSalaryChanges === 1 && adjustedSalaries.length > 1">
-      <p
-        class="p-3 text-lg"
-        v-html="
-          $t(
-            'salary.summary.change.one',
-            {
-              changeAdjusted: (overallChangeAdjusted > 0
-                ? overallChangeAdjusted
-                : overallChangeAdjusted * -1
-              ).toPrecision(3),
-              period: timeElapsed
-            },
-            overallChangeAdjusted
-          )
-        "
-      ></p>
-      <p class="p-3 text-sm" v-html="$t('salary.summary.change.helper')"></p>
+      <p class="p-3 text-lg">
+        <i18n-t keypath="salary.summary.change.one" :plural="overallChangeAdjusted">
+          <template v-slot:changeAdjusted>
+            <span class="font-bold text-red-500">
+              <i18n-n :value="overallChangeAdjusted / 100" format="result" />
+            </span>
+          </template>
+          <template v-slot:period>
+            {{ timeElapsed }}
+          </template>
+        </i18n-t>
+      </p>
+      <p class="p-3 text-sm">
+        <i18n-t keypath="salary.summary.change.helper" />
+      </p>
     </template>
     <template v-else-if="numberOfSalaryChanges === 0">
       <p class="p-3 text-sm">
-        {{ $t('salary.summary.change.none') }}
+        <i18n-t keypath="salary.summary.change.none" />
       </p>
     </template>
     <p class="self-end p-5 text-xs underline">
@@ -166,17 +174,23 @@ export default defineComponent({
         "
         class="m-3 block md:inline"
       >
-        <RouterLink to="/configure">{{ $t('salary.summary.custom') }}</RouterLink>
+        <RouterLink to="/configure">
+          <i18n-t keypath="salary.summary.custom" />
+        </RouterLink>
       </span>
       <span v-else-if="numberOfSalaryChanges > 0" class="m-3 block md:inline">
-        <RouterLink to="/configure">{{
-          $t('salary.summary.source', {
-            country: $t('configure.country.options.' + configuration.country)
-          })
-        }}</RouterLink>
+        <RouterLink to="/configure">
+          <i18n-t keypath="salary.summary.source">
+            <template v-slot:country>
+              <i18n-t :keypath="'configure.country.options.' + configuration.country" />
+            </template>
+          </i18n-t>
+        </RouterLink>
       </span>
       <span class="m-3 block md:inline">
-        <RouterLink to="/how">{{ $t('salary.summary.helper') }}</RouterLink>
+        <RouterLink to="/how">
+          <i18n-t keypath="salary.summary.helper" />
+        </RouterLink>
       </span>
     </p>
   </div>
