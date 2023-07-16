@@ -3,6 +3,7 @@ export type countryCode =
   | 'at'
   | 'be'
   | 'bg'
+  | 'ca'
   | 'ch'
   | 'cy'
   | 'cz'
@@ -44,6 +45,7 @@ export const countryCodes = [
   'at',
   'be',
   'bg',
+  'ca',
   'ch',
   'cy',
   'cz',
