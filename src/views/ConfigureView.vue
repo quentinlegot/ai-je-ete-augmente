@@ -111,11 +111,11 @@ export default defineComponent({
       <i18n-t keypath="configure.autosave" />
     </blockquote>
     <div class="divide-y-2 divide-dashed">
-      <form class="mb-5 grid grid-cols-1 pt-5" v-on:submit.prevent="">
-        <label for="language" class="md:flex md:flex-row md:justify-between">
+      <form class="mb-5 pt-5" v-on:submit.prevent="">
+        <label for="language" class="block">
           <i18n-t keypath="configure.language.label" />
         </label>
-        <select id="language" v-model="configuration.locale">
+        <select id="language" v-model="configuration.locale" class="block w-full">
           <option value="fr">
             <i18n-t keypath="configure.language.options.fr" />
           </option>
@@ -124,14 +124,7 @@ export default defineComponent({
           </option>
         </select>
       </form>
-      <form class="mb-5 grid grid-cols-1 pt-5 md:grid-cols-2" v-on:submit.prevent="">
-        <label
-          for="useCustomInflation"
-          class="mb-3 md:mb-0 md:inline"
-          :class="configuration.useCustomInflation ? 'text-black' : 'text-slate-500 '"
-        >
-          <i18n-t keypath="configure.custom.label" />
-        </label>
+      <form class="mb-5 pt-5" v-on:submit.prevent="">
         <input
           type="checkbox"
           v-model="configuration.useCustomInflation"
@@ -139,15 +132,18 @@ export default defineComponent({
           class="peer/custom-inflation mb-3"
         />
         <label
-          for="country"
-          class="peer-checked/custom-inflation:hidden md:col-span-2 md:flex md:flex-row md:justify-between"
+          for="useCustomInflation"
+          class="mb-3 block text-slate-500 peer-checked/custom-inflation:text-black md:mb-0 md:ml-3 md:inline"
         >
+          <i18n-t keypath="configure.custom.label" />
+        </label>
+        <label for="country" class="block peer-checked/custom-inflation:hidden md:justify-between">
           <i18n-t keypath="configure.country.label" />
         </label>
         <select
           id="country"
           v-model="configuration.country"
-          class="peer-checked/custom-inflation:hidden md:col-span-2"
+          class="block w-full peer-checked/custom-inflation:hidden"
         >
           <option
             v-for="(countryCode, index) in countryCodes"
@@ -159,21 +155,21 @@ export default defineComponent({
         </select>
         <textarea
           v-model="customInflation"
-          class="hidden peer-checked/custom-inflation:block md:col-span-2"
+          class="hidden w-full peer-checked/custom-inflation:block"
           :placeholder="$t('configure.custom.placeholder')"
         >
         </textarea>
-        <blockquote class="m-1 hidden text-xs peer-checked/custom-inflation:block md:col-span-2">
+        <blockquote class="m-1 hidden text-xs peer-checked/custom-inflation:block">
           <i18n-t keypath="configure.custom.helper" />
         </blockquote>
         <div
           v-if="pendingCustomInflation"
-          class="m-1 hidden text-xs text-orange-800 peer-checked/custom-inflation:block md:col-span-2"
+          class="m-1 hidden text-xs text-orange-800 peer-checked/custom-inflation:block"
         >
           <i18n-t keypath="configure.custom.error" />
         </div>
       </form>
-      <form class="mb-5" v-on:submit.prevent="">
+      <form class="mb-5 pt-5" v-on:submit.prevent="">
         <label for="configCurrency" class="block">
           <i18n-t keypath="configure.currency.label" />
         </label>
@@ -184,12 +180,12 @@ export default defineComponent({
           id="configCurrency"
           class="block md:inline"
         />
-        <small class="ml-3 block text-xs md:inline-block">
+        <small class="block text-xs md:ml-3 md:inline-block">
           <i18n-t keypath="configure.currency.helper" />
         </small>
 
         <fieldset class="mt-3">
-          <legend>
+          <legend class="block">
             <i18n-t keypath="configure.incomeMode.label" />
           </legend>
           <input
