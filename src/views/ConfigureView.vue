@@ -182,7 +182,7 @@ export default defineComponent({
           required
           v-model="configuration.currency"
           id="configCurrency"
-          class="ml-3 block md:inline"
+          class="block md:inline"
         />
         <small class="ml-3 block text-xs md:inline-block">
           <i18n-t keypath="configure.currency.helper" />
@@ -199,11 +199,11 @@ export default defineComponent({
             v-model="configuration.incomeMode"
             id="configIncomeGrossAnnual"
             name="configIncomeMode"
-            class="peer/gross-annual mx-3"
+            class="peer/gross-annual"
           />
           <label
             for="configIncomeGrossAnnual"
-            class="mb-3 ml-3 block peer-checked/gross-annual:font-semibold md:ml-0 md:inline"
+            class="mb-3 block peer-checked/gross-annual:font-semibold md:ml-3 md:inline"
           >
             <i18n-t keypath="configure.incomeMode.grossAnnual.label" />
           </label>
@@ -214,25 +214,25 @@ export default defineComponent({
             v-model="configuration.incomeMode"
             id="configIncomeNetMonthly"
             name="configIncomeMode"
-            class="peer/net-monthly mx-3"
+            class="peer/net-monthly md:ml-3"
           />
           <label
             for="configIncomeNetMonthly"
-            class="mb-3 ml-3 block peer-checked/net-monthly:font-semibold md:ml-0 md:inline"
+            class="mb-3 block peer-checked/net-monthly:font-semibold md:ml-3 md:inline"
           >
             <i18n-t keypath="configure.incomeMode.netMonthly.label" />
           </label>
           <small
-            class="m-3 hidden text-xs peer-checked/gross-annual:block peer-hover/gross-annual:block peer-hover/net-monthly:hidden"
+            class="my-3 hidden text-xs peer-checked/gross-annual:block peer-hover/gross-annual:block peer-hover/net-monthly:hidden"
           >
             <i18n-t keypath="configure.incomeMode.grossAnnual.helper" />
           </small>
           <small
-            class="m-3 hidden text-xs peer-checked/net-monthly:block peer-hover/net-monthly:block peer-hover/gross-annual:hidden"
+            class="my-3 hidden text-xs peer-checked/net-monthly:block peer-hover/net-monthly:block peer-hover/gross-annual:hidden"
           >
             <i18n-t keypath="configure.incomeMode.netMonthly.helper" />
           </small>
-          <div class="ml-3 hidden peer-checked/gross-annual:block md:mt-3">
+          <div class="hidden peer-checked/gross-annual:block md:mt-3">
             <label for="configImposition">
               <i18n-t keypath="configure.incomeMode.grossAnnual.imposition.label" />
             </label>
