@@ -5,11 +5,7 @@ import InflationChart from '@/components/InflationChart.vue'
 import SalaryDisplay from '@/components/SalaryDisplay.vue'
 import SalaryNew from '@/components/SalaryNew.vue'
 import { defineComponent } from 'vue'
-import {
-  AdjustedSalaryCreateFiller,
-  AdjustedSalaryCreateFirst,
-  AdjustedSalaryCreateFromPrevious
-} from '@/components/AdjustedSalary'
+import { AdjustedSalaryCreateListUpToDate } from '@/components/AdjustedSalary'
 import type { CountryInflationRates, InflationRates } from '@/components/InflationRates'
 import AdjustedSalariesSummary from '@/components/AdjustedSalariesSummary.vue'
 import type { Configuration } from '@/components/SharedConfiguration'
@@ -35,66 +31,13 @@ export default defineComponent({
       return Math.max(...this.salaries.map((s: Salary): number => s.key.valueOf())) + 1
     },
     adjustedSalaries(): AdjustedSalary[] {
-      let clonedSalaries = [] as Salary[]
-      this.salaries.forEach((salary: Salary) => clonedSalaries.push(salary))
-      if (clonedSalaries.length == 0) {
-        return []
-      }
-
-      const inflationRates: InflationRates =
+      return AdjustedSalaryCreateListUpToDate(
+        this.salaries,
         this.configuration.useCustomInflation && this.configuration.customInflation !== null
           ? this.configuration.customInflation
-          : this.inflationRates[this.configuration.country] ?? {}
-      const toMonth = new Date().getMonth() + 1
-      const toYear = new Date().getFullYear()
-      const [sYear, sMonth] = clonedSalaries[0].date.split('-')
-      let month = parseInt(sMonth)
-      let year = parseInt(sYear)
-      let cumulatedInflationMultiplier = 1
-      let lastSalary: AdjustedSalary
-
-      const adjustedSalaries = [] as AdjustedSalary[]
-      adjustedSalaries.push((lastSalary = AdjustedSalaryCreateFirst(clonedSalaries.shift()!)))
-      month++
-      if (month > 12) {
-        month = 1
-        year++
-      }
-
-      while (year < toYear || month <= toMonth || clonedSalaries.length > 0) {
-        let sMonth = ('' + month).padStart(2, '0')
-        let sYear = '' + year
-        let date = sYear + '-' + sMonth
-        if (!(date in inflationRates)) {
-          if (clonedSalaries.length === 0) {
-            break
-          }
-        }
-        let inflationRate = date in inflationRates ? inflationRates[date] : 0
-        cumulatedInflationMultiplier *= 1 + inflationRate / 100
-
-        if (clonedSalaries.length > 0 && date == clonedSalaries[0].date) {
-          adjustedSalaries.push(
-            (lastSalary = AdjustedSalaryCreateFromPrevious(
-              clonedSalaries.shift()!,
-              lastSalary,
-              cumulatedInflationMultiplier
-            ))
-          )
-        } else {
-          adjustedSalaries.push(
-            AdjustedSalaryCreateFiller(date, lastSalary, cumulatedInflationMultiplier)
-          )
-        }
-
-        month++
-        if (month > 12) {
-          month = 1
-          year++
-        }
-      }
-
-      return adjustedSalaries
+          : this.inflationRates[this.configuration.country] ?? {},
+        new Date()
+      )
     },
     missingInflationRates(): [Array<string>, string | null] {
       if (this.salaries.length === 0) {
