@@ -104,9 +104,13 @@
             <i18n-t keypath="about.discuss.p1.linkMastodon" />
           </a>
         </template>
-        <template v-slot:linkTwitter>
-          <a href="https://twitter.com/LarsVanCiental" target="_blank" class="underline">
-            <i18n-t keypath="about.discuss.p1.linkTwitter" />
+        <template v-slot:linkSource>
+          <a
+            href="https://bitbucket.org/Lars-VanCiental/ai-je-ete-augmente/issues?status=new&status=open"
+            target="_blank"
+            class="underline"
+          >
+            <i18n-t keypath="about.discuss.p1.linkSource" />
           </a>
         </template>
       </i18n-t>

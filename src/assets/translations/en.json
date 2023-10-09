@@ -2,7 +2,7 @@
   "about": {
     "contribute": {
       "p1": {
-        "link": "code source is available here",
+        "link": "code source is available on bitbucket",
         "p": "If you want to contribute, {link}. "
       },
       "title": "Contribute"
@@ -10,8 +10,8 @@
     "discuss": {
       "p1": {
         "linkMastodon": "on mastodon 🦣",
-        "linkTwitter": " on twitter 🐦",
-        "p": "Discuss the project {linkMastodon} or {linkTwitter}. "
+        "linkSource": "on bitbucket 🪣",
+        "p": "Discuss the project {linkMastodon} or directly {linkSource}. "
       },
       "title": "Discuss"
     },

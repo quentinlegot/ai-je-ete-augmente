@@ -2,7 +2,7 @@
   "about": {
     "contribute": {
       "p1": {
-        "link": "les sources sont disponibles ici",
+        "link": "les sources sont disponibles sur bitbucket",
         "p": "Si vous souhaitez participer, {link}."
       },
       "title": "Contribuer"
@@ -10,8 +10,8 @@
     "discuss": {
       "p1": {
         "linkMastodon": "sur mastodon 🦣",
-        "linkTwitter": " sur twitter 🐦",
-        "p": "Pour discuter du projet, rendez-vous {linkMastodon} ou bien {linkTwitter}. "
+        "linkSource": "sur bitbucket 🪣",
+        "p": "Pour discuter du projet, rendez-vous {linkMastodon} ou directement {linkSource}. "
       },
       "title": "Discuter"
     },
