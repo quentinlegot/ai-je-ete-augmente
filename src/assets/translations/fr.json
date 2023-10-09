@@ -249,6 +249,10 @@
         "years": "{number} ans"
       }
     },
-    "warning": "Attention, le taux d'inflation pour la période du {dates} n'est pas connu ! | Attention, {number} taux d'inflation sont inconnues. Il s'agit des périodes suivantes : {dates}. "
+    "warning": {
+      "lastKnown": " Les calculs s'arrêtent au {date}, avec le dernier taux d'inflation connu. ",
+      "missings": "Attention, le taux d'inflation pour la période du {dates} n'est pas connu ! | Attention, {number} taux d'inflation sont inconnues. Il s'agit des périodes suivantes : {dates}. ",
+      "noKnown": "Attention, aucun taux d'inflation n'est connu, calculs impossibles. "
+    }
   }
 }

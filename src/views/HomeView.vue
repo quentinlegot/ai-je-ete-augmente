@@ -21,8 +21,7 @@ export default defineComponent({
     return {
       configuration: SharedConfiguration as Configuration,
       inflationRates: {} as CountryInflationRates,
-      salaries: [] as Salary[],
-      missingInflationRates: [] as Array<string>
+      salaries: [] as Salary[]
     }
   },
   async created() {
@@ -62,8 +61,6 @@ export default defineComponent({
         year++
       }
 
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.missingInflationRates = []
       while (year < toYear || month <= toMonth || clonedSalaries.length > 0) {
         let sMonth = ('' + month).padStart(2, '0')
         let sYear = '' + year
@@ -72,8 +69,6 @@ export default defineComponent({
           if (clonedSalaries.length === 0) {
             break
           }
-          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.missingInflationRates.push(date)
         }
         let inflationRate = date in inflationRates ? inflationRates[date] : 0
         cumulatedInflationMultiplier *= 1 + inflationRate / 100
@@ -100,6 +95,46 @@ export default defineComponent({
       }
 
       return adjustedSalaries
+    },
+    missingInflationRates(): [Array<string>, string | null] {
+      if (this.salaries.length === 0) {
+        return [[], null]
+      }
+
+      let lastKnownInflationRate: string | null = null
+      const [sToYear, sToMonth] = this.salaries[0].date.split('-')
+      const toMonth = parseInt(sToMonth)
+      const toYear = parseInt(sToYear)
+      let month = new Date().getMonth() + 1
+      let year = new Date().getFullYear()
+
+      const inflationRates: InflationRates =
+        this.configuration.useCustomInflation && this.configuration.customInflation !== null
+          ? this.configuration.customInflation
+          : this.inflationRates[this.configuration.country] ?? {}
+
+      const missingInflationRates: Array<string> = []
+      while (year > toYear || month > toMonth) {
+        const sMonth = ('' + month).padStart(2, '0')
+        const sYear = '' + year
+        const date = sYear + '-' + sMonth
+
+        if (date in inflationRates && lastKnownInflationRate === null) {
+          lastKnownInflationRate = date
+        }
+
+        if (lastKnownInflationRate !== null && !(date in inflationRates)) {
+          missingInflationRates.push(date)
+        }
+
+        month--
+        if (month === 0) {
+          month = 12
+          year--
+        }
+      }
+
+      return [missingInflationRates, lastKnownInflationRate]
     }
   },
   methods: {
@@ -162,15 +197,25 @@ export default defineComponent({
     <section class="grow">
       <div class="sticky top-0">
         <inflation-chart :adjusted-salaries="adjustedSalaries" />
-        <p v-if="missingInflationRates.length > 0" class="m-5 p-2 text-sm italic">
-          <i18n-t keypath="salary.warning" :plural="missingInflationRates.length">
-            <template v-slot:dates>
-              {{ missingInflationRates.join(', ') }}
-            </template>
-            <template v-slot:number>
-              {{ missingInflationRates.length }}
+        <p v-if="salaries.length > 0" class="mx-5 p-2 text-sm italic">
+          <i18n-t v-if="missingInflationRates[1] !== null" keypath="salary.warning.lastKnown">
+            <template v-slot:date>
+              {{ missingInflationRates[1] }}
             </template>
           </i18n-t>
+          <i18n-t
+            v-if="missingInflationRates[0].length > 0"
+            keypath="salary.warning.missings"
+            :plural="missingInflationRates[0].length"
+          >
+            <template v-slot:dates>
+              {{ missingInflationRates[0].join(', ') }}
+            </template>
+            <template v-slot:number>
+              {{ missingInflationRates[0].length }}
+            </template>
+          </i18n-t>
+          <i18n-t v-if="missingInflationRates[1] === null" keypath="salary.warning.noKnown" />
         </p>
         <adjusted-salaries-summary :adjusted-salaries="adjustedSalaries" />
       </div>

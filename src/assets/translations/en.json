@@ -247,6 +247,10 @@
         "years": "{number} years"
       }
     },
-    "warning": "Warning, inflation rate for {dates} is unknown! | Warning, {number} inflation rates are unknown for the follwing periods: {dates}. "
+    "warning": {
+      "lastKnown": "Calculation stop on {date}, with the last known inflation rate. ",
+      "missings": "Warning, inflation rate for {dates} is unknown! | Warning, {number} inflation rates are unknown for the follwing periods: {dates}. ",
+      "noKnown": "Warning, no known inflation rate! Calculations cannot be done. "
+    }
   }
 }
