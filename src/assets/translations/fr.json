@@ -16,8 +16,8 @@
       "title": "Discuter"
     },
     "goal": {
-      "p1": "Ce projet est né de la volonté de déterminer le % d'augmentation réelle, par rapport à la perte de salaire suite à l'inflation, depuis la précédente augmentation. ",
-      "p2": "Si vous souhaitez aller plus loin sur le sujet de l'inflation, il existe de multiples sources bien plus fournies et sérieuses. ",
+      "p1": "Ce projet est né de la volonté de déterminer le % d'augmentation réelle du salaire, par rapport à la perte de pouvoir d'achat suite à l'inflation, depuis la précédente augmentation. ",
+      "p2": "Ce simulateur donne un ordre d'idée. Toutes les situations sont uniques, et l'inflation s'applique à chacun différemment. Si vous souhaitez aller plus loin sur le sujet de l'inflation, il existe de multiples sources bien plus fournies et sérieuses. ",
       "p3": {
         "1": "Le site du gouvernement",
         "2": "L'insee",
@@ -36,7 +36,7 @@
       "title": "Mentions Légales"
     },
     "why": {
-      "p1": "Au cours de l'année 2022, on a pu voir les taux d'inflation s'envoler en france. La question s'est posée pour beaucoup de savoir si les \"augmentations\" annuelles allaient au moins couvrir la hausse des prix. ",
+      "p1": "Au cours de l'année 2022, on a pu voir les taux d'inflation s'envoler en france. La question s'est posée pour beaucoup de savoir si les \"augmentations\" annuelles allaient au moins couvrir la hausse des prix et la perte de pouvoir d'achat. ",
       "p2": "L'interrogation s'est aussi faites pour les augmentations des années précédentes. A priori, on ne pense pas à suivre l'inflation régulièrement. ",
       "title": "A propos"
     }

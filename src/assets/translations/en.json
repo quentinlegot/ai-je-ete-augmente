@@ -16,8 +16,8 @@
       "title": "Discuss"
     },
     "goal": {
-      "p1": "This project was born out of the desire to determine the real percentage raise, in relation to the loss of salary due to inflation since the previous raise. ",
-      "p2": "If you want to delve deeper into the subject of inflation, there are many more detailed and accurate sources. ",
+      "p1": "This project was born out of the desire to determine the real percentage raise in salary, in relation to the loss of purchasing power due to inflation since the previous raise. ",
+      "p2": "This tool only gives an idea. Every situation is unique and inflation applies differently. If you want to delve deeper into the subject of inflation, there are many more detailed and accurate sources. ",
       "p3": {
         "1": "Eurostat website 🇪🇺",
         "2": "Eurostat explanation of HICP",
@@ -34,7 +34,7 @@
       "title": "Legal Notices"
     },
     "why": {
-      "p1": "In the course of 2022, inflation rates soared in France (and in Europe overall). Many wondered whether the annual \"raises\" would, at least, cover the rise in prices. ",
+      "p1": "In the course of 2022, inflation rates soared in France (and in Europe overall). Many wondered whether the annual \"raises\" would, at least, cover the rise in prices and the loss of purchasing power. ",
       "p2": "Turns out the question was relevant for all previous years, but we don't often think about it. ",
       "title": "About"
     }
