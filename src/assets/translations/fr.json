@@ -148,7 +148,7 @@
     "usage": {
       "p1": {
         "link": "la page principale",
-        "p": "Sur {link}, ajoutez les changements de salaires successifs au mois auquels ils sont survenus. "
+        "p": "Sur {link}, ajoutez les changements de salaires successifs aux mois auquels ils sont survenus. "
       },
       "p2": "Vous pourrez voir le % d'augmentation annoncé, et en dessous, celui ajusté par rapport à l'inflation. ",
       "p3": {
