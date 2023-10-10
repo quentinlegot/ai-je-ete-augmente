@@ -150,7 +150,7 @@
         "link": "la page principale",
         "p": "Sur {link}, ajoutez les changements de salaires successifs aux mois auquels ils sont survenus. "
       },
-      "p2": "Vous pourrez voir le % d'augmentation annoncé, et en dessous, celui ajusté par rapport à l'inflation. ",
+      "p2": "Vous pourrez voir le % d'augmentation annoncé, et en dessous, celui ajusté par rapport à l'inflation. Vous pourrez aussi voir l'augmentation minimale nécessaire pour compenser la perte de pouvoir d'achat, depuis le dernier changement de salaire.",
       "p3": {
         "link": "la page de configuration",
         "p": "Sur {link}, vous pourrez changer le mode de saisie du salaire et la méthode de calcul en alternant entre salaire annuel brut prélevé d'une imposition, ou salaire mensuel net. "
@@ -241,6 +241,12 @@
       },
       "custom": "Avec des taux d'inflation personnalisés ✍\uFE0F",
       "helper": "Comment ça marche ?",
+      "next": {
+        "disclaimer": " depuis votre précédent changement de salaire au {date} ; et uniquement la perte depuis cette date là ; ",
+        "newSalary": "@:global.salary {recurrence}",
+        "requirement": " N'importe quelle augmentation augmentera votre pouvoir d'achat ! | N'importe quelle augmentation augmentera votre pouvoir d'achat ! | pour compenser la perte de pouvoir d'achat entraînée par l'inflation,{disclaimer} il vous faudrait bénéficier d'une augmentation d'une valeur minimale de {minimalRaiseRequired}, soit un nouveau salaire de {newSalary}. ",
+        "title": "Prochaine augmentation : "
+      },
       "source": "Avec les taux d'inflation de {country}",
       "time": {
         "months": "{number} mois",

@@ -148,7 +148,7 @@
         "link": "the main page",
         "p": "Over {link}, fill in the successive salary changes over time. "
       },
-      "p2": "You will be able to see the percentage raise announced, and below, the real change adjusted with the inflation. ",
+      "p2": "You will be able to see the percentage raise announced, and below, the real change adjusted with the inflation. You will also see the next required percentage raise to mitigate the loss of purchasing power since the last change of salary. ",
       "p3": {
         "link": "the configuration page",
         "p": "Over {link}, you will be able to change the income calculation mode between annual gross income with imposition, and net monthly. "
@@ -239,6 +239,12 @@
       },
       "custom": "Using custom inflation rates ✍\uFE0F",
       "helper": "How does it work?",
+      "next": {
+        "disclaimer": " since your last change of salary at {date}; and only the loss since this date; ",
+        "newSalary": "@:global.salary {recurrence}",
+        "requirement": " Any raise will increase your purchasing power! | Any raise will increase your purchasing power! | to mitigate the loss in purchasing power due to the inflation,{disclaimer} you will need at least a raise of {minimalRaiseRequired}, meaning a new salary of {newSalary}. ",
+        "title": "Next raise: "
+      },
       "source": "Using inflation rates from {country}",
       "time": {
         "months": "{number} months",

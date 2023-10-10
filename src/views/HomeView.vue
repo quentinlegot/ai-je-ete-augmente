@@ -39,6 +39,23 @@ export default defineComponent({
         new Date()
       )
     },
+    lastSalaryAdjusted(): [Salary | null, AdjustedSalary | null] {
+      if (this.salaries.length === 0) {
+        return [null, null]
+      }
+
+      const lastSalary = this.salaries[this.salaries.length - 1]
+
+      const lastAdjustedSalaries = AdjustedSalaryCreateListUpToDate(
+        [lastSalary],
+        this.configuration.useCustomInflation && this.configuration.customInflation !== null
+          ? this.configuration.customInflation
+          : this.inflationRates[this.configuration.country] ?? {},
+        new Date()
+      )
+
+      return [lastSalary, lastAdjustedSalaries[lastAdjustedSalaries.length - 1]]
+    },
     missingInflationRates(): [Array<string>, string | null] {
       if (this.salaries.length === 0) {
         return [[], null]
@@ -160,7 +177,11 @@ export default defineComponent({
           </i18n-t>
           <i18n-t v-if="missingInflationRates[1] === null" keypath="salary.warning.noKnown" />
         </p>
-        <adjusted-salaries-summary :adjusted-salaries="adjustedSalaries" />
+        <adjusted-salaries-summary
+          :adjusted-salaries="adjustedSalaries"
+          :last-salary="lastSalaryAdjusted[0]"
+          :last-salary-adjusted="lastSalaryAdjusted[1]"
+        />
       </div>
     </section>
   </main>

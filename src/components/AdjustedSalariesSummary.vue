@@ -4,12 +4,23 @@ import type { PropType } from 'vue'
 import type { AdjustedSalary } from '@/components/AdjustedSalary'
 import type { Configuration } from '@/components/SharedConfiguration'
 import { SharedConfiguration } from '@/components/SharedConfiguration'
+import type { Salary } from '@/components/Salary'
 
 export default defineComponent({
   props: {
     adjustedSalaries: {
       type: Array as PropType<AdjustedSalary[]>,
       required: true
+    },
+    lastSalary: {
+      type: Object as PropType<Salary | null>,
+      default: null,
+      required: false
+    },
+    lastSalaryAdjusted: {
+      type: Object as PropType<AdjustedSalary | null>,
+      default: null,
+      required: false
     }
   },
   data() {
@@ -39,6 +50,20 @@ export default defineComponent({
 
       return this.adjustedSalaries[0].income
     },
+    minimalRaiseRequired(): number {
+      if (this.lastSalaryAdjusted === null) {
+        return 0
+      }
+
+      return this.lastSalaryAdjusted.cumulatedInflationMultiplier - 1
+    },
+    minimalNewSalary(): number {
+      if (this.lastSalary === null || this.lastSalaryAdjusted === null) {
+        return 0
+      }
+
+      return this.lastSalary.income * this.lastSalaryAdjusted.cumulatedInflationMultiplier
+    },
     numberOfSalaryChanges(): number {
       return this.adjustedSalaries.filter(
         (adjustedSalary: AdjustedSalary): boolean => adjustedSalary.originalSalary !== null
@@ -67,6 +92,16 @@ export default defineComponent({
           1) *
         100
       )
+    },
+    salaryRecurrence(): string {
+      switch (this.configuration.incomeMode) {
+        case 'gross-annual':
+          return this.$t('salary.history.gross')
+        case 'net-monthly':
+          return this.$t('salary.history.net')
+        default:
+          return ''
+      }
     },
     timeElapsed(): string {
       if (this.adjustedSalaries.length <= 18) {
@@ -163,6 +198,44 @@ export default defineComponent({
     <template v-else-if="numberOfSalaryChanges === 0">
       <p class="p-3 text-sm">
         <i18n-t keypath="salary.summary.change.none" />
+      </p>
+    </template>
+    <template v-if="lastSalary !== null">
+      <p class="p-3 text-lg">
+        <span class="font-bold text-red-500">
+          <i18n-t keypath="salary.summary.next.title" />
+        </span>
+        <i18n-t keypath="salary.summary.next.requirement" :plural="minimalRaiseRequired">
+          <template v-slot:disclaimer>
+            <span class="italic">
+              <i18n-t v-if="numberOfSalaryChanges > 1" keypath="salary.summary.next.disclaimer">
+                <template v-slot:date>
+                  {{ lastSalary.date }}
+                </template>
+              </i18n-t>
+            </span>
+          </template>
+          <template v-slot:minimalRaiseRequired>
+            <span class="font-bold text-red-500">
+              <i18n-n :value="minimalRaiseRequired" format="raise" />
+            </span>
+          </template>
+          <template v-slot:newSalary>
+            <span class="font-bold">
+              <i18n-t keypath="salary.summary.next.newSalary">
+                <template v-slot:income>
+                  <i18n-n :value="minimalNewSalary" format="salary" />
+                </template>
+                <template v-slot:currency>
+                  {{ configuration.currency }}
+                </template>
+                <template v-slot:recurrence>
+                  {{ salaryRecurrence }}
+                </template>
+              </i18n-t>
+            </span>
+          </template>
+        </i18n-t>
       </p>
     </template>
     <p class="self-end p-5 text-xs underline">
