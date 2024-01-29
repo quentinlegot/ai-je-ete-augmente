@@ -41,7 +41,7 @@ async function main() {
   try {
     if (!fs.existsSync(eurostatTsvFilePath)) {
       await download(
-        'https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=data/prc_hicp_mmor.tsv.gz',
+        'https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/prc_hicp_mmor?format=TSV&compressed=true',
         eurostatTsvFilePath,
         true
       )

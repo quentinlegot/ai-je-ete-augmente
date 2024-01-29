@@ -4,7 +4,7 @@ import type { CountryInflationRates } from '../components/InflationRates'
 import type { countryCode } from '../components/CountryCodes'
 import { countryCodes } from '../components/CountryCodes'
 
-const eurostatIndicatorForInflationRate = 'RCH_M,CP00,'
+const eurostatIndicatorForInflationRate = 'M,RCH_M,CP00,'
 
 export function convertEurostatTsvToJson(
   inputFilePath: string,
@@ -18,13 +18,13 @@ export function convertEurostatTsvToJson(
       crlfDelay: Infinity
     })
     lineReader.once('line', (line: string) => {
-      const datePattern: RegExp = /(\d{4})M(\d{2})/
+      const datePattern: RegExp = /(\d{4})-(\d{2})/
       dates = line.split('\t').flatMap((date: string) => {
         if (!datePattern.test(date)) {
           return []
         }
 
-        return [date.trim().replace(datePattern, '$1-$2')]
+        return [date.trim()]
       })
     })
     lineReader.on('line', (line: string) => {
