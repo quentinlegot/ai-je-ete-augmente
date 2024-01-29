@@ -107,7 +107,7 @@
           "helper": "Percent withdrawn from the gross income to get the net salary"
         },
         "helper": "Imposition is withdrawn from the gross income, which is then evaluated monthly against the inflation rate",
-        "label": "Annuel gross salary"
+        "label": "Annual gross salary"
       },
       "label": "Calculation mode according the type of salary",
       "netMonthly": {
@@ -131,7 +131,7 @@
     "inflation": {
       "p1": {
         "link": "the EU commission Eurostat 🇪🇺",
-        "p": "Inflation rates used are thoses published by {link} for each month (harmonised index of consumer prices, monthly rate of change). "
+        "p": "Inflation rates used are those published by {link} for each month (harmonised index of consumer prices, monthly rate of change). "
       },
       "title": "Where do inflation rates come from?"
     },
@@ -233,8 +233,8 @@
           "announced": "Over {period}, your salary has changed {numberOfChanges} times, without change in valuation. | Over {period}, your salary changed {numberOfChanges} times, with a announced loss of {change}. | Over {period}, your salary changed {numberOfChanges} times, for a announced raise of {change}. ",
           "overall": "From {baseIncome} to {finalIncome} {finalIncomeAdjusted} net/month over {period} months. "
         },
-        "none": "To start, add a salary to see it's evolution over time. ",
-        "one": "In {period}, you salary valuation did'nt change. | In {period}, your salary lost {changeAdjusted} of its value. | In {period}, you salary valuation increased by {changeAdjusted}. ",
+        "none": "To start, add a salary to see its evolution over time. ",
+        "one": "In {period}, you salary valuation didn't change. | In {period}, your salary lost {changeAdjusted} of its value. | In {period}, you salary valuation increased by {changeAdjusted}. ",
         "helper": "Add another salary to see the gap between them adjusted with the inflation. "
       },
       "custom": "Using custom inflation rates ✍\uFE0F",
@@ -255,7 +255,7 @@
     },
     "warning": {
       "lastKnown": "Calculation stop on {date}, with the last known inflation rate. ",
-      "missings": "Warning, inflation rate for {dates} is unknown! | Warning, {number} inflation rates are unknown for the follwing periods: {dates}. ",
+      "missings": "Warning, inflation rate for {dates} is unknown! | Warning, {number} inflation rates are unknown for the following periods: {dates}. ",
       "noKnown": "Warning, no known inflation rate! Calculations cannot be done. "
     }
   }
