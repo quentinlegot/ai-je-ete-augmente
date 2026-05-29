@@ -1,0 +1,31 @@
+name: Import inflation rate
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 1 * *'
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 24 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm i
+      - run: npm run import && npm run format
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: chore/inflations-patch
+
